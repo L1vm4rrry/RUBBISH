@@ -6,6 +6,48 @@
     <title>RUBBISH - 关于</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <style>
+        /* 终极免责声明折叠样式 */
+        .disclaimer-box {
+            position: relative;
+            max-height: 280px; /* 默认折叠高度 */
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+            margin-bottom: 10px;
+        }
+        .disclaimer-box.expanded {
+            max-height: 6000px; /* 展开后足够高 */
+        }
+        .disclaimer-fade {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(transparent, #fff);
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+        .disclaimer-box.expanded .disclaimer-fade {
+            opacity: 0;
+        }
+        .disclaimer-btn {
+            display: block;
+            margin: 10px auto 0;
+            padding: 10px 24px;
+            border: 1px solid #000;
+            background: #fff;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+        .disclaimer-btn:hover {
+            background: #f0f0f0;
+        }
+    </style>
 </head>
 <body>
 
@@ -41,7 +83,58 @@
                 <p style="margin-top: 10px;"><strong>投稿内容提醒：</strong>严禁宣传黄赌毒贷、暴力血腥、反国言论等违法内容。我们只收“科学垃圾”，不收“违法垃圾”。投稿即代表同意将其改造成A类学术垃圾。</p>
             </div>
 
-            <!-- 第二位：联系方式 -->
+            <!-- 第二位：终极免责声明（带展开折叠） -->
+            <div class="post">
+                <h2>《RUBBISH》终极免责声明与宇宙安全公约</h2>
+                
+                <div class="disclaimer-box" id="disclaimerContent">
+                    <p><strong>【阅读前必读】</strong><br>在您翻阅本刊任何“学术垃圾”之前，请务必仔细阅读以下声明。本声明具有跨维度的法律效力。</p>
+
+                    <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">一、 核心动机与学术立场</h3>
+                    <ol>
+                        <li><strong>非引战宣言：</strong>本刊发表的所有“理论”与“脑洞”，表达观点仅为字面含义。绝非引战、水军、反串、碰瓷或蹭热度。无任何隐喻、暗示或衍生含义。</li>
+                        <li><strong>非权威背书：</strong>内容仅代表原作者个人浅薄的看法，不代表任何其他团体或个人。本刊非专业学术机构，内容仅为个人bb空间（Brain-Bashing Space）的延伸，绝非严肃学术探讨。</li>
+                    </ol>
+
+                    <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">二、 作者与读者精神状态声明</h3>
+                    <ol>
+                        <li><strong>生理与心理指标：</strong>本刊编委及作者均家庭和睦安康，无任何心理或精神疾病，智力处于正常人类水平。</li>
+                        <li><strong>性别与平权立场：</strong>本刊坚定支持男女平等，强调“男女”二字排序不分前后。</li>
+                        <li><strong>表情管理豁免：</strong>作者表达能力一般，面部表情管理较差。若在阅读或交流时让您觉得“表情过于欠揍”，绝非恶意鄙视，纯属生理局限，不代表本人真实想法。</li>
+                    </ol>
+
+                    <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">三、 内容边界与免责条款</h3>
+                    <ol>
+                        <li><strong>非严肃娱乐化：</strong>本刊用词为网络通用口吻，绝无恶意，绝无任何将严肃话题娱乐化的意图（虽然看起来很像）。</li>
+                        <li><strong>动物保护与物种平等：</strong>本刊热爱小动物。若文中将人比喻成狗，仅为通俗调侃，绝无贬损人类人格、尊严、人权或歧视动物的意图。</li>
+                        <li><strong>手滑免责条款：</strong>如有点赞到您不认可的内容，纯属手滑，绝非故意针对您个人、群体、团体或组织。</li>
+                    </ol>
+
+                    <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">四、 互动规则与知识产权</h3>
+                    <ol>
+                        <li><strong>回复时效：</strong>因私信和评论较多，时间有限，短期未回复不代表无视，也可能是“手到”。如有误会，欢迎私信质疑，本人一一回复。</li>
+                        <li><strong>开源精神：</strong>本网站使用字体为免费开源字体，无任何恶意侵权行为。评论中如出现他人均已化名处理，如有侵权请证明关联，会尽快处理。</li>
+                        <li><strong>责任自负：</strong>本人素质为平均素质，发表言论不具备专业性，但会对自己的内容负所有责任。如有不良言论，建议自行拉黑或举报处理，绝非视而不见。</li>
+                    </ol>
+
+                    <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">五、 自我认知与学术谦卑</h3>
+                    <p>本人学识疏浅，阅历有限，受限于个人能力与认知边界，所阐述内容或存诸多缺漏与偏差。观点难免流于表面，未经严谨论证，恐难达周全之境。若有不当之处，恳请海涵；错谬之处皆因自身能力不逮，诚盼指正，自当深省改进。</p>
+
+                    <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">六、 特殊/科幻级防御（最高优先级）</h3>
+                    <ol>
+                        <li><strong>地球人认证：</strong>本人神经虽天马行空，但确为地球人，热爱地球文化文明，无任何反人类倾向。</li>
+                        <li><strong>宇宙安全公约：</strong>本人郑重承诺，未向三体发送过地球坐标，未向任何外星人、异次元文明、平行宇宙泄露过地球信息。</li>
+                        <li><strong>物理定律豁免：</strong>若因阅读本刊中的“超导发电机”等理论导致时空扭曲或地球爆炸，本刊概不负责。</li>
+                    </ol>
+                </div>
+                
+                <!-- 渐变遮罩层 -->
+                <div class="disclaimer-fade" id="disclaimerFade"></div>
+                <!-- 展开/收起按钮 -->
+                <button class="disclaimer-btn" id="disclaimerToggle">展开全文</button>
+            </div>
+
+            <!-- 第三位：联系方式 -->
             <div class="post">
                 <h2>联系方式</h2>
                 <div style="padding: 8px 0;">
@@ -51,15 +144,17 @@
                 </div>
             </div>
 
-            <!-- 第三位：贡献 -->
+            <!-- 第四位：贡献 -->
             <div class="post">
                 <h2>贡献</h2>
                 
                 <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
                     <strong>主策划：</strong> Dr.叶浅予（注：纯属同名，非国画大师本尊转世。如有雷同，实属缘分。）
+                    <span style="color: #888; font-size: 14px;">（全站代码、排版、论文、Logo、HGS奖，均由我一个人肝了10小时完成。）</span>
                 </div>
                 <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
                     <strong>副策划：</strong> Apl_zh
+                    <span style="color: #888; font-size: 14px;">（主要负责在旁边看着、催更、提建议，然后看着我熬夜修BUG。）</span>
                 </div>
                 <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
                     <strong>编辑：</strong> Dr.叶 & Deepseek
@@ -79,5 +174,20 @@
         </footer>
     </div>
 
+    <!-- 展开全文功能的JS -->
+    <script>
+        const disclaimerToggle = document.getElementById('disclaimerToggle');
+        const disclaimerContent = document.getElementById('disclaimerContent');
+
+        disclaimerToggle.addEventListener('click', function() {
+            if (disclaimerContent.classList.contains('expanded')) {
+                disclaimerContent.classList.remove('expanded');
+                disclaimerToggle.innerText = '展开全文';
+            } else {
+                disclaimerContent.classList.add('expanded');
+                disclaimerToggle.innerText = '收起（省点流量）';
+            }
+        });
+    </script>
 </body>
 </html>

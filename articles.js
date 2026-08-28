@@ -14,6 +14,14 @@ const articlesData = [
         date: "2026-08-28",
         type: "普通" // 保持普通
     },
+        // 普通文章
+    {
+        title: "第二届年度世界人形机器人运动会（神秘机翻版）",
+        url: "articles/common/第二届世界人形机器人运动会（神秘机翻版）.html",
+        author: "Nature / Rubbish神秘机翻组",
+        date: "2026-08-28",
+        type: "普通"
+    },
     {
         title: "量子级碳骨架重组与热力学逆熵合成理论",
         url: "articles/handpicked/量子级碳骨架重组与热力学逆熵合成理论.html",
