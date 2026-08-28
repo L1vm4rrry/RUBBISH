@@ -18,7 +18,7 @@ const articlesData = [
     {
         title: "第二届年度世界人形机器人运动会（神秘机翻版）",
         url: "articles/common/第二届世界人形机器人运动会（神秘机翻版）.html",
-        author: "Nature / Rubbish神秘机翻组",
+        author: "Nature / Translate by Dr.叶",
         date: "2026-08-28",
         type: "普通"
     },
@@ -47,6 +47,13 @@ const articlesData = [
         title: "三角函数倍角公式的绝妙几何证明",
         url: "articles/handpicked/三角函数倍角公式的绝妙几何证明.html", // 路径改成了handpicked
         author: "Dr.叶 (No.3 AS 总策划)",
+        date: "2026-08-28",
+        type: "精选" // 改成精选
+    },
+    {
+        title: "三角函数倍角公式的绝妙几何证明Pt.2",
+        url: "articles/handpicked/关于一个没什么用的定理的推导.html", // 路径改成了handpicked
+        author: "XIV(主要证明) & Dr.叶 (No.3 AS 总策划)(次要验证)",
         date: "2026-08-28",
         type: "精选" // 改成精选
     }
@@ -88,5 +95,12 @@ const hgsAwards = [
         url: "articles/HGS/第一期_三角函数倍角公式的绝妙几何证明.html",
         author: "Dr.叶",
         summary: "本证明采用纯欧几里得几何风格，通过无中生有地在内部构造“等腰三角形”，利用底角相等、外角定理与勾股定理三步推导，绝妙地导出了二倍角公式。展现了初中几何的看家本领，被评委会评为第一届HGS最高荣誉。"
+    },
+    {
+        issue: "第一届",
+        title: "关于一个没什么用的定理的推导",
+        url: "articles/HGS/第一期第二篇_关于一个没什么用的定理的推导.html",
+        author: "XIV(主要证明) & Dr.叶 (No.3 AS 总策划)(次要验证)",
+        summary: "本证明由XIV提出新颖的内部构造视角，并辅助以“瞪眼法”进行严密推导。将枯燥的代数恒等式转化为优美的几何外角关系，体现了初中生最后的倔强与极高的捣乱水平。"
     }
 ];
