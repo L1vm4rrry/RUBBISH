@@ -25,19 +25,17 @@
                     <li><a href="bin.html">投稿</a></li>
                 </ul>
                 <div class="search-wrapper">
-                    <input type="text" placeholder="搜索学术垃圾..." class="search-input">
-                    <button class="search-btn">搜索</button>
+                    <input type="text" id="search-input" placeholder="输入标题搜垃圾..." class="search-input">
+                    <button class="search-btn" onclick="doSearch()">搜索</button>
                 </div>
             </nav>
         </header>
 
-        <!-- 全站所有文章区（动态渲染） -->
         <main class="content">
             <div class="bin-header">
                 <h2 style="margin: 0;">全站历代稿件档案库</h2>
                 <p style="color: #555; margin-top: 10px;">这里收录了所有审核通过的文章（包含精选和普通），支持查看全部内容。</p>
             </div>
-            <!-- 动态插入所有文章的位置 -->
             <div id="explore-list"></div>
         </main>
 
@@ -46,21 +44,55 @@
         </footer>
     </div>
 
-    <!-- 加载文章数据 -->
     <script src="articles.js"></script>
     <script>
         // 渲染探索页所有文章
         const exploreList = document.getElementById('explore-list');
-        articlesData.forEach(article => {
-            exploreList.innerHTML += `
-                <div class="bin-item">
-                    <div class="bin-title"><a href="${article.url}" style="text-decoration: none; color: black;">${article.title}（${article.type}）</a></div>
-                    <div class="bin-meta">
-                        <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
+        const searchInput = document.getElementById('search-input');
+
+        // 核心渲染函数
+        function renderArticles(list) {
+            exploreList.innerHTML = '';
+            if (list.length === 0) {
+                exploreList.innerHTML = '<div style="text-align: center; padding: 30px; color: #888;">没有找到匹配的学术垃圾，换个词试试？</div>';
+                return;
+            }
+            list.forEach(article => {
+                exploreList.innerHTML += `
+                    <div class="bin-item">
+                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none; color: black;">${article.title}（${article.type}）</a></div>
+                        <div class="bin-meta">
+                            <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            });
+        }
+
+        // 初始化渲染全部文章
+        renderArticles(articlesData);
+
+        // 搜索功能
+        function doSearch() {
+            const query = searchInput.value.toLowerCase();
+            const filteredArticles = articlesData.filter(article => article.title.toLowerCase().includes(query));
+            renderArticles(filteredArticles);
+        }
+
+        // 让输入框支持“回车键”直接搜索
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                doSearch();
+            }
         });
+
+        // 【新增】读取首页跳转过来的URL参数，自动搜索！
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlQuery = urlParams.get('q');
+        if (urlQuery) {
+            searchInput.value = urlQuery; // 自动填入搜索框
+            doSearch(); // 自动执行搜索
+        }
     </script>
 </body>
 </html>

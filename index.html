@@ -34,19 +34,18 @@
                     <li><a href="bin.html">投稿</a></li>
                 </ul>
                 <div class="search-wrapper">
-                    <input type="text" placeholder="搜索学术垃圾..." class="search-input">
-                    <button class="search-btn">搜索</button>
+                    <!-- 加了 id，方便读取 -->
+                    <input type="text" id="search-input-home" placeholder="搜索学术垃圾..." class="search-input">
+                    <button class="search-btn" onclick="doHomeSearch()">搜索</button>
                 </div>
             </nav>
         </header>
 
-        <!-- 精选文章区（动态渲染） -->
         <main class="content">
             <div class="bin-header">
                 <h2 style="margin: 0;">首页精选 / 最新动态</h2>
                 <p style="color: #555; margin-top: 10px;">这里只展示从 <strong>articles/handpicked</strong> 中精选的优质学术垃圾。</p>
             </div>
-            <!-- 动态插入精选文章的位置 -->
             <div id="home-list"></div>
         </main>
 
@@ -72,6 +71,13 @@
                 </div>
             `;
         });
+
+        // 首页搜索跳转逻辑
+        function doHomeSearch() {
+            const query = document.getElementById('search-input-home').value;
+            // 跳转并带上搜索词参数
+            window.location.href = 'explore.html?q=' + encodeURIComponent(query);
+        }
 
         // 彩蛋逻辑
         const homeBtn = document.querySelector('.nav-home');
