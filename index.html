@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 首页</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- 支持 LaTeX 数学公式 (MathJax) -->
+    <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 首页</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                </ul>
+                <div class="search-wrapper">
+                    <input type="text" placeholder="搜索学术垃圾..." class="search-input">
+                    <button class="search-btn">搜索</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 精选文章区（动态渲染） -->
+        <main class="content">
+            <div class="bin-header">
+                <h2 style="margin: 0;">首页精选 / 最新动态</h2>
+                <p style="color: #555; margin-top: 10px;">这里只展示从 <strong>articles/handpicked</strong> 中精选的优质学术垃圾。</p>
+            </div>
+            <!-- 动态插入精选文章的位置 -->
+            <div id="home-list"></div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <!-- 顶部彩蛋代码 -->
+    <div id="home-toast" class="toast">这已经是首页了呢pwp</div>
+
+    <!-- 加载文章数据 -->
+    <script src="articles.js"></script>
+    <script>
+        // 渲染首页精选
+        const homeList = document.getElementById('home-list');
+        articlesData.filter(article => article.type === "精选").forEach(article => {
+            homeList.innerHTML += `
+                <div class="post">
+                    <h2><a href="${article.url}">${article.title}</a></h2>
+                    <p><strong>作者：</strong>${article.author} | <strong>发布时间：</strong>${article.date}</p>
+                    <a href="${article.url}">阅读全文 →</a>
+                </div>
+            `;
+        });
+
+        // 彩蛋逻辑
+        const homeBtn = document.querySelector('.nav-home');
+        let toastTimer = null;
+        if (homeBtn) {
+            homeBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const toast = document.getElementById('home-toast');
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                    toastTimer = null;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

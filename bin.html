@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 投稿区</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 投稿</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html" class="nav-current">投稿</a></li>
+                </ul>
+                <div class="search-wrapper">
+                    <input type="text" placeholder="搜索学术垃圾..." class="search-input">
+                    <button class="search-btn">搜索</button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="content">
+            <div class="bin-header">
+                <h2 style="margin: 0;">BIN（待审核区）</h2>
+                <p style="color: #555; margin-top: 10px;">这里只展示从 <strong>bin</strong> 文件夹中收到的稿件。审核通过的将不再展示，自动移入探索区。所有稿件状态均为：<strong style="color: #b71c1c;">等待审核中</strong>。</p>
+            </div>
+
+            <!-- 动态插入待审核稿件的位置 -->
+            <div id="pending-list"></div>
+            
+            <!-- 没有稿件时的提示 -->
+            <div id="no-pending" style="display: none; padding: 20px; color: #888; text-align: center;">目前暂无等待审核的稿件，欢迎投稿！</div>
+
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <!-- 加载文章数据 -->
+    <script src="articles.js"></script>
+    <script>
+        // 渲染待审核稿件
+        const pendingList = document.getElementById('pending-list');
+        const noPending = document.getElementById('no-pending');
+
+        if (pendingArticles.length === 0) {
+            noPending.style.display = 'block';
+        } else {
+            pendingArticles.forEach(article => {
+                pendingList.innerHTML += `
+                    <div class="bin-item">
+                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none; color: black;">${article.title}</a></div>
+                        <div class="bin-meta">
+                            <span class="status-pending">等待审核中</span>
+                            <span class="date">作者：${article.author} | 交稿时间：${article.date}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

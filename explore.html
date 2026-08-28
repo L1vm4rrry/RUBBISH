@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 探索</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 探索</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html" class="nav-current">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                </ul>
+                <div class="search-wrapper">
+                    <input type="text" placeholder="搜索学术垃圾..." class="search-input">
+                    <button class="search-btn">搜索</button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 全站所有文章区（动态渲染） -->
+        <main class="content">
+            <div class="bin-header">
+                <h2 style="margin: 0;">全站历代稿件档案库</h2>
+                <p style="color: #555; margin-top: 10px;">这里收录了所有审核通过的文章（包含精选和普通），支持查看全部内容。</p>
+            </div>
+            <!-- 动态插入所有文章的位置 -->
+            <div id="explore-list"></div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <!-- 加载文章数据 -->
+    <script src="articles.js"></script>
+    <script>
+        // 渲染探索页所有文章
+        const exploreList = document.getElementById('explore-list');
+        articlesData.forEach(article => {
+            exploreList.innerHTML += `
+                <div class="bin-item">
+                    <div class="bin-title"><a href="${article.url}" style="text-decoration: none; color: black;">${article.title}（${article.type}）</a></div>
+                    <div class="bin-meta">
+                        <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
