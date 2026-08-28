@@ -56,6 +56,18 @@
         </footer>
     </div>
 
+    <!-- 首次访问欢迎公告弹窗 -->
+    <div id="announcement-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>欢迎来到 RUBBISH 垃圾站！</h2>
+            <div style="font-size: 15px; line-height: 1.8; color: #555;">
+                <p><strong>宇宙安全声明：</strong>本站纯属虚构，所有“学术理论”仅供娱乐，请勿在现实中进行任何危险实验（比如把红墨水当酸碱指示剂，或者试图用C还原CO₂）。</p>
+                <p style="margin-top: 10px;"><strong>投稿提醒：</strong>本垃圾站欢迎各种优质垃圾，但绝不允许宣传黄赌毒贷、暴力血腥、反国言论等违法行为。一经发现，直接送入黑洞（并封号）。</p>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal()">知道了！</button>
+        </div>
+    </div>
+
     <!-- 顶部彩蛋代码 -->
     <div id="home-toast" class="toast">这已经是首页了呢pwp</div>
 
@@ -95,6 +107,17 @@
                     toastTimer = null;
                 }, 2000);
             });
+        }
+                // 弹窗逻辑（只在每次新打开标签页时弹出一次）
+                window.onload = function() {
+            if (!sessionStorage.getItem('announcement_shown')) {
+                document.getElementById('announcement-modal').style.display = 'flex';
+                sessionStorage.setItem('announcement_shown', 'true');
+            }
+        };
+        
+        function closeModal() {
+            document.getElementById('announcement-modal').style.display = 'none';
         }
     </script>
 </body>
