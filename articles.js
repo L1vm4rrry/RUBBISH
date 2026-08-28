@@ -9,12 +9,18 @@ const articlesData = [
     },
     {
         title: "有理菌分裂动力学与整数重构论",
-        url: "articles/common/有理菌分裂动力学与整数重构论.html", // 路径改了，加了 common
+        url: "articles/common/有理菌分裂动力学与整数重构论.html",
         author: "Starry",
         date: "2026-08-28",
-        type: "普通" // 保持普通
+        type: "普通"
     },
-        // 普通文章
+    {
+        title: "汉堡存在及美味程度与雷德王降临概率相关性探究实验报告",
+        url: "articles/common/汉堡存在及美味程度与雷德王降临概率相关性探究实验报告.html",
+        author: "Apl_zh",
+        date: "2026-08-28",
+        type: "普通"
+    },
     {
         title: "第二届年度世界人形机器人运动会（神秘机翻版）",
         url: "articles/common/第二届世界人形机器人运动会（神秘机翻版）.html",
@@ -56,6 +62,13 @@ const articlesData = [
         author: "XIV(主要证明) & Dr.叶 (No.3 AS 总策划)(次要验证)",
         date: "2026-08-28",
         type: "精选" // 改成精选
+    },
+    {
+        title: "二次函数性质重构与三角恒等式探究",
+        url: "articles/handpicked/二次函数性质重构与三角恒等式探究.html",
+        author: "Dr.叶 (No.3 AS 总策划)",
+        date: "2026-08-28",
+        type: "精选"
     }
     // 下面的三角函数文件你还没建，所以先注释掉。等以后写好了再解开
     /*
@@ -102,5 +115,13 @@ const hgsAwards = [
         url: "articles/HGS/第一期第二篇_关于一个没什么用的定理的推导.html",
         author: "XIV(主要证明) & Dr.叶 (No.3 AS 总策划)(次要验证)",
         summary: "本证明由XIV提出新颖的内部构造视角，并辅助以“瞪眼法”进行严密推导。将枯燥的代数恒等式转化为优美的几何外角关系，体现了初中生最后的倔强与极高的捣乱水平。"
+    },
+    // 新增第三篇
+    {
+        issue: "第一届",
+        title: "二次函数性质重构与三角恒等式探究",
+        url: "articles/HGS/第一期第三篇_二次函数性质重构与三角恒等式探究.html",
+        author: "Dr.叶",
+        summary: "开创性地提出“顶点判别式”，跳过了繁琐的展开运算，直接将二次函数与几何意义结合，展现了极高的数学直觉。"
     }
 ];
