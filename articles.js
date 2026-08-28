@@ -73,7 +73,7 @@ const articlesData = [
         type: "精选" // 改成精选
     },
     {
-        title: "二次函数性质重构与三角恒等式探究",
+        title: "二次函数性质重构",
         url: "articles/handpicked/二次函数性质重构与三角恒等式探究.html",
         author: "Dr.叶 (No.3 AS 总策划)",
         date: "2026-08-28",
@@ -134,8 +134,8 @@ const hgsAwards = [
     // 新增第三篇
     {
         issue: "第一届",
-        title: "二次函数性质重构与三角恒等式探究",
-        url: "articles/HGS/第一期第三篇_二次函数性质重构与三角恒等式探究.html",
+        title: "二次函数性质重构",
+        url: "articles/HGS/第一期第三篇_二次函数性质重构.html",
         author: "Dr.叶",
         summary: "开创性地提出“顶点判别式”，跳过了繁琐的展开运算，直接将二次函数与几何意义结合，展现了极高的数学直觉。"
     }
