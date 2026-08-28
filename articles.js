@@ -29,6 +29,15 @@ const articlesData = [
         type: "普通"
     },
     {
+        title: "关于多索雷斯城墙增长速度函数的探究",
+        url: "articles/common/关于多索雷斯城墙增长速度函数的探究.html",
+        author: "Dr.叶",
+        date: "2026-08-28",
+        type: "普通"
+    },
+    //上面是普通
+    //下面是精选
+    {
         title: "量子级碳骨架重组与热力学逆熵合成理论",
         url: "articles/handpicked/量子级碳骨架重组与热力学逆熵合成理论.html",
         author: "张子涵",
