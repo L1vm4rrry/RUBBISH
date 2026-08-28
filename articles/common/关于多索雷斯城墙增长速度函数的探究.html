@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>关于多索雷斯城墙增长速度函数的探究</title>
+    <!-- 二级深文件夹，CSS路径跳两级 -->
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
+    <!-- 支持 LaTeX -->
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html" class="nav-home">← 返回首页</a></li>
+                <li><a href="../../explore.html">探索</a></li>
+            </ul>
+        </nav>
+
+        <main class="content" style="margin-top: 30px;">
+            <div style="border-bottom: 2px solid #000; padding-bottom: 20px; margin-bottom: 30px;">
+                <h1 style="font-family: Georgia, serif; font-size: 36px; margin-bottom: 10px;">关于多索雷斯城墙增长速度函数的探究</h1>
+                
+                <p style="font-size: 16px; font-weight: bold;">Researcher: Dr.叶</p>
+                <p style="font-size: 14px; color: #888;">No.3 Middle School Science and Technology Innovation Academy (No.3 AS)</p>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">摘要</h2>
+            <p>多索雷斯城墙是当代互联网亚文化中一个独特的数字景观，其作为《明日方舟》“多索雷斯假日”活动PV的评论区，历经五年持续“扩建”，评论总量从最初的70余万增长至470万以上。本文基于对该“城墙”五年发展历程的观察与数据梳理，尝试建立其评论数量增长的数学模型，探究“赛博长城”扩建的动力学机制。研究发现，多索雷斯城墙的增长并非服从简单的线性或指数规律，而是一种由外部事件驱动的间歇性脉冲增长模式，其增长速度函数可表达为若干Dirac delta函数的叠加，并受到“竞争压力”“假期效应”及“社区动员能力”等多重因素的调制。本研究为理解当代互联网社区集体行为提供了一种幽默而严谨的分析范式。</p>
+            <p><strong>关键词：</strong>多索雷斯城墙；增长速度函数；赛博徭役；脉冲增长模型；互联网亚文化</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">一、引言</h2>
+            <p>2021年8月，《明日方舟》官方发布了夏日限定活动“多索雷斯假日”的宣传PV。彼时，由于空降夏日限定角色、立绘质量争议、长草期过长及模组系统不受看好等多重因素叠加，玩家积蓄已久的不满情绪被点燃。愤怒的“博士”们涌入PV评论区，将评论量推至70余万。此后，这场风波虽逐渐平息，PV评论区却被戏称为“古战场”。</p>
+            <p>然而，令人始料未及的是，这座“古战场”非但没有湮没于互联网的记忆废墟之中，反而在此后的每一年都被不断“扩建”，最终从一处差评遗迹蜕变为二次元游戏圈最负盛名的“赛博长城”。围绕这一独特的数字文化现象，一个自然而有趣的问题浮现出来：<strong>多索雷斯城墙的增长速度究竟遵循怎样的函数规律？</strong></p>
+            <p>本文尝试以学术的严谨审视这一“赛博”现象，通过对历史数据的梳理与建模，揭示这座虚拟城墙背后独特的增长动力学。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">二、文献综述与现象描述</h2>
+            <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">2.1 多索雷斯城市背景</h3>
+            <p>根据《泰拉大典》记载，多索雷斯（Dossoles）又称“双日城”，是《明日方舟》世界观中玻利瓦尔的一座沿海度假城市，位于玻利瓦尔、哥伦比亚与莱塔尼亚三国交汇处。该城由坎黛拉·桑切斯在玻利瓦尔长期内战中经营形成，以旅游业、酿酒业、制糖业和赌场闻名。然而，本文所考察的“多索雷斯城墙”并非游戏中这座城市的地理防御工事，而是玩家社群对“多索雷斯假日”PV评论区的一种隐喻性称谓。</p>
+
+            <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">2.2 “修墙”行为的本质</h3>
+            <p>所谓“修墙”，即玩家在PV评论区持续刷评的行为。修墙工们发展出了一套完整的“行业规范”：口号有“冲击799，我辈义不容辞”，话术有“修长城还需要有啥理由？给我修！”。评论区内部亦有明确分工：有人负责“砌砖”（发布评论）、有人负责“监工”（督促他人）、有人负责编写“修墙顺口溜”。这一现象被玩家戏称为“电子徭役”或“赛博徭役”。</p>
+
+            <h3 style="font-family: Georgia, serif; border-bottom: 1px solid #eee; padding-bottom: 5px;">2.3 增长的关键节点</h3>
+            <p><strong>第一阶段（2021年8月）：</strong>初始爆发。玩家因运营不满涌入评论区，评论量达到约70万。</p>
+            <p><strong>第二阶段（2025年）：</strong>首次加固。因《三角洲行动》官方动态下出现50余万条评论，“修墙工”们感到“城墙”地位受到威胁，遂返回古战场展开“加固工程”，将评论数从70余万推至100余万。</p>
+            <p><strong>第三阶段（2026年2月）：</strong>史诗级扩建。崩坏星穹铁道社区发生二创翻车事件，玩家在白厄PV下刷出120万条评论抗议。方舟“修墙工”感受到竞争压力，适逢春节长假，大批玩家涌入多索雷斯PV评论区，“两天之内暴涨了200多万条，直接突破了470万”。据记载，评论区曾“因dps太高导致乱轴于3:22达到325万评论”。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">三、研究方法与数据</h2>
+            <p><strong>3.1 数据来源</strong></p>
+            <p>本研究的数据主要来源于公开的新闻报道、社区记录及玩家观测。由于多索雷斯城墙的“扩建工程”是一个动态进行的社区行为，缺乏官方实时数据接口，本文所采用的数据为各关键节点的观测值，虽不完整，但足以勾勒增长的基本轮廓。</p>
+            <p><strong>3.2 关键数据点</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px;">
+                <tr style="background-color: #f2f2f2; border-bottom: 2px solid #ccc;">
+                    <th style="padding: 8px; border: 1px solid #ddd;">时间节点</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">评论量（万）</th>
+                    <th style="padding: 8px; border: 1px solid #ddd;">事件驱动</th>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">2021年8月</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~70</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">初始爆发（运营争议）</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">2025年</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">~100</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">首次加固（三角洲行动竞争）</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px; border: 1px solid #ddd;">2026年2月（两天内）</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">70→470</td>
+                    <td style="padding: 8px; border: 1px solid #ddd;">史诗级扩建（崩铁事件+春节）</td>
+                </tr>
+            </table>
+            <p>值得注意的是，2026年2月的增长中，评论量在两天内净增约200万（从70余万经325万最终达到470万以上）。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">四、多索雷斯城墙增长速度函数模型</h2>
+            <p><strong>4.1 基本函数形式</strong></p>
+            <p>基于上述观测数据，多索雷斯城墙的评论数量 $C(t)$ 可以表示为时间 $t$ 的函数。其增长速度 $v(t) = dC/dt$ 呈现典型的<strong>间歇性脉冲增长</strong>特征，而非平滑的连续增长。</p>
+            <p>我们提出如下基本模型：</p>
+            <p style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                $$C(t) = C_0 + \sum_{i=1}^{n} A_i \cdot H(t - t_i) \cdot f_i(t - t_i)$$
+            </p>
+            <p>其中：$C_0 = 70$（万），为初始评论量；$t_i$ 为第 $i$ 次“扩建”事件的触发时间；$A_i$ 为第 $i$ 次事件的总增长幅度；$H(t)$ 为Heaviside阶跃函数，表示事件的突发性；$f_i(\tau)$ 为第 $i$ 次增长的时间分布函数。</p>
+            <p>对应的增长速度函数为：</p>
+            <p style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                $$v(t) = \sum_{i=1}^{n} A_i \cdot \left[ \delta(t - t_i) \cdot f_i(0) + H(t - t_i) \cdot f_i'(t - t_i) \right]$$
+            </p>
+            <p>在理想化的瞬间爆发模型中，每一次“修墙”事件可近似为Dirac delta函数：</p>
+            <p style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                $$v(t) \approx \sum_{i=1}^{n} A_i \cdot \delta(t - t_i)$$
+            </p>
+
+            <p><strong>4.2 脉冲参数的实证估计</strong></p>
+            <p>根据观测数据，我们可以估计各次事件的参数：</p>
+            <p><strong>事件1（2021年8月）：</strong>$t_1 = 0$（基准时刻），$A_1 \approx 70$（万），持续时间约数天至数周。</p>
+            <p><strong>事件2（2025年）：</strong>$t_2 \approx 4$（年），$A_2 \approx 30$（万，从70万增至100万），驱动因素为外部竞争压力。</p>
+            <p><strong>事件3（2026年2月）：</strong>$t_3 \approx 4.5$（年），$A_3 \approx 400$（万，从70余万增至470万以上），持续时间约2天，驱动因素为崩铁事件触发 + 春节长假效应。</p>
+
+            <p><strong>4.3 增长速率的量级估算</strong></p>
+            <p>2026年2月的扩建中，评论量在两天内增长约200万（从约270万到470万）。据此可估算瞬时增长速度：</p>
+            <p style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                $$\bar{v} = \frac{2{,}000{,}000}{2 \times 24 \times 3600} \approx 11.57 \text{条/秒}$$
+            </p>
+            <p>这一估算与社区观测到的“每秒12楼”的记录基本吻合。考虑到增长并非均匀分布，峰值速率可能更高。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">五、分析与讨论</h2>
+            <p><strong>5.1 增长函数的调制因子</strong></p>
+            <p>上述基本模型忽略了若干重要的调制因素。实际的多索雷斯城墙增长速度应视为以下因子的乘积：</p>
+            <p style="text-align: center; font-size: 1.2em; margin: 20px 0;">
+                $$v_{\text{实际}}(t) = v_{\text{基础}}(t) \cdot \alpha(t) \cdot \beta(t) \cdot \gamma(t)$$
+            </p>
+            <p>其中：<strong>$\alpha(t)$（外部竞争压力因子）</strong>。当其他游戏社区出现高评论量事件时（如三角洲行动的50万评论、崩铁白厄PV的120万评论），该因子显著增大，驱动“修墙工”采取行动。<strong>$\beta(t)$（假期效应因子）</strong>。2026年2月的扩建恰逢“春节长假”，大量玩家拥有闲暇时间。该因子在法定节假日期间取较高值。<strong>$\gamma(t)$（社区动员能力因子）</strong>。修墙工社群的组织化程度直接影响增长效率。经过五年的发展，该社群已形成“完整的自我修养”和明确分工，$\gamma(t)$ 随时间呈递增趋势。</p>
+
+            <p><strong>5.2 增长函数的哲学意涵</strong></p>
+            <p>从更抽象的层面来看，多索雷斯城墙的增长函数揭示了互联网亚文化中一种独特的“<strong>防御性炫耀</strong>”逻辑。如一位观察者所言，“说穿了‘修长城’的行为本身是毫无意义的，一条PV的评论数是470万还是870万并不会改变任何现实”。然而，正是这种集体性的、看似无意义的行为，构成了社群认同的基石。</p>
+            <p>每一次“修墙”事件都遵循相似的触发模式：<strong>外部威胁感知 → 社群动员 → 脉冲式增长 → 阶段性平息</strong>。这种模式在函数图像上表现为一系列离散的脉冲，而非连续的指数增长——这是一种“响应式”的增长，而非“自主式”的增长。</p>
+
+            <p><strong>5.3 模型的局限性与未来研究方向</strong></p>
+            <p>本研究存在以下局限：首先，数据来源以社区观测和新闻报道为主，缺乏精确的实时数据；其次，模型未能充分考虑评论删除、水军干扰等外部因素；第三，对于“修墙”行为的微观动机（个体为何参与）未做深入探讨。</p>
+            <p>未来研究可从以下方向深入：（1）获取B站API数据以建立精确的时间序列模型；（2）运用社会网络分析探究“修墙”行为的传播动力学；（3）比较不同游戏社区“评论竞赛”的增长模式差异。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">六、结论</h2>
+            <p>本文通过对多索雷斯城墙五年发展历程的梳理，建立了其评论数量增长的数学模型。研究表明，该城墙的增长并非服从平滑的数学规律，而是呈现<strong>间歇性脉冲增长</strong>的特征，其增长速度函数可视为一系列由外部事件驱动的脉冲函数的叠加。</p>
+            <p>具体而言：多索雷斯城墙的增长由三次主要“扩建”事件驱动；增长速度受外部竞争压力、假期效应和社区动员能力三重因子调制；峰值增长速度可达约12条/秒，体现了互联网社群惊人的集体行动效率。正如有评论所言，“五年了这个梗一直在，甚至每一次二游圈出大节奏都会被拉出来怀念一下”——这座“赛博长城”的增长，或许永远不会真正停止。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 1px solid #ccc; padding-bottom: 5px;">参考文献</h2>
+            <p>[1] 戒戒说游戏. 多索雷斯五年修墙史全复盘，470万评论的赛博长城到底是怎么来的[EB/OL]. (2026-06-15). </p>
+            <p>[2] 戒戒说游戏. 多索雷斯五年修墙史全复盘[EB/OL]. (2026-06-16). </p>
+            <p>[3] 萌娘百科. 明日方舟/多索雷斯假日[EB/OL]. </p>
+            <p>[4] PRTS Wiki. 泰拉大典:地理/多索雷斯[EB/OL]. </p>
+            <p>[5] Bilibili. 多索雷斯古战场再起硝烟[EB/OL].</p>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+</body>
+</html>
