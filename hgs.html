@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - HGS奖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - HGS奖</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                    <li><a href="hgs.html" class="nav-current" style="color: #D4AF37;">HGS奖</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <div class="hgs-hero">
+                <h1 class="hgs-main-title">HGS</h1>
+                <p class="hgs-tagline">The High-Grade Stupidity Award / 高等愚蠢奖</p>
+                <p class="hgs-tagline" style="color: #B8860B;">每年只有一篇最“优质”的垃圾能获此殊荣！</p>
+            </div>
+
+            <!-- 动态渲染获奖区（只显示摘要和查看原文） -->
+            <div id="hgs-list"></div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <script src="articles.js"></script>
+    <script>
+        const hgsList = document.getElementById('hgs-list');
+        hgsAwards.forEach(award => {
+            hgsList.innerHTML += `
+                <div class="hgs-card">
+                    <div class="hgs-issue">${award.issue}</div>
+                    <div class="hgs-winner">${award.title}</div>
+                    <div class="hgs-author">获奖者：${award.author}</div>
+                    
+                    <!-- 摘要区 -->
+                    <div style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #D4AF37; border-radius: 4px; text-align: left; color: #555; font-size: 15px; line-height: 1.6;">
+                        <strong style="color: #B8860B;">摘要：</strong>${award.summary}
+                    </div>
+
+                    <!-- 查看原文按钮 -->
+                    <a href="${award.url}" style="display: inline-block; margin-top: 10px; background-color: #D4AF37; color: #fff; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.3s;">
+                        查看原文 →
+                    </a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

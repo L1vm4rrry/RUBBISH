@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 首页</title>
-    <link rel="stylesheet" href="style.css?v=2">
+    <link rel="stylesheet" href="style.css">
     
+    <!-- 支持 LaTeX 数学公式 (MathJax) -->
     <script>
     MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
@@ -31,8 +32,10 @@
                     <li><a href="publish.html">合作出版</a></li>
                     <li><a href="subscribe.html">订阅</a></li>
                     <li><a href="bin.html">投稿</a></li>
+                    <li><a href="hgs.html" class="nav-current" style="color: #D4AF37;">HGS奖</a></li>
                 </ul>
                 <div class="search-wrapper">
+                    <!-- 加了 id，方便读取 -->
                     <input type="text" id="search-input-home" placeholder="搜索学术垃圾..." class="search-input">
                     <button class="search-btn" onclick="doHomeSearch()">搜索</button>
                 </div>
@@ -52,17 +55,12 @@
         </footer>
     </div>
 
+    <!-- 顶部彩蛋代码 -->
     <div id="home-toast" class="toast">这已经是首页了呢pwp</div>
 
-    <!-- 加了版本号，防止缓存不更新 -->
-    <script src="articles.js?v=2"></script>
+    <!-- 加载文章数据 -->
+    <script src="articles.js?v=20260828"></script>
     <script>
-        // 把搜索函数提到最前面，并绑定到window，防止被前面的报错阻断！
-        window.doHomeSearch = function() {
-            const query = document.getElementById('search-input-home').value;
-            window.location.href = 'explore.html?q=' + encodeURIComponent(query);
-        };
-
         // 渲染首页精选
         const homeList = document.getElementById('home-list');
         articlesData.filter(article => article.type === "精选").forEach(article => {
@@ -74,6 +72,13 @@
                 </div>
             `;
         });
+
+        // 首页搜索跳转逻辑
+        function doHomeSearch() {
+            const query = document.getElementById('search-input-home').value;
+            // 跳转并带上搜索词参数
+            window.location.href = 'explore.html?q=' + encodeURIComponent(query);
+        }
 
         // 彩蛋逻辑
         const homeBtn = document.querySelector('.nav-home');

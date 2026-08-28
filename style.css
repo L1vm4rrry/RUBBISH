@@ -225,3 +225,54 @@ mjx-container {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+
+/* ===== HGS奖页面样式（复古暗金） ===== */
+.hgs-hero {
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 2px solid #D4AF37; /* 暗金 */
+    margin-bottom: 30px;
+}
+.hgs-main-title {
+    font-family: Georgia, serif;
+    font-size: 56px;
+    color: #D4AF37; /* 暗金 */
+    text-shadow: 3px 3px 6px rgba(212, 175, 55, 0.4);
+    margin: 0;
+}
+.hgs-tagline {
+    font-size: 16px;
+    color: #888;
+    margin-top: 10px;
+}
+.hgs-card {
+    border: 2px solid #D4AF37;
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    background-color: #FFFDF5;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+    text-align: center;
+}
+.hgs-issue {
+    display: inline-block;
+    background-color: #D4AF37;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.hgs-winner {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #B8860B; /* 更深一层的暗金 */
+    margin: 10px 0;
+}
+.hgs-author {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+}
