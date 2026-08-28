@@ -1,11 +1,11 @@
 // articles.js - 全站文章数据仓库
 const articlesData = [
     {
-        title: "量子级碳骨架重组与热力学逆熵合成理论",
-        url: "articles/handpicked/量子级碳骨架重组与热力学逆熵合成理论.html",
-        author: "张子涵",
-        date: "2026-08-27",
-        type: "精选"
+        title: "超导发电机无限能源理论",
+        url: "articles/common/超导发电机无限能源理论.html",
+        author: "Dr.叶 & Apl_zh",
+        date: "2026-08-28",
+        type: "普通"
     },
     {
         title: "有理菌分裂动力学与整数重构论",
@@ -13,6 +13,13 @@ const articlesData = [
         author: "Starry",
         date: "2026-08-28",
         type: "普通" // 保持普通
+    },
+    {
+        title: "量子级碳骨架重组与热力学逆熵合成理论",
+        url: "articles/handpicked/量子级碳骨架重组与热力学逆熵合成理论.html",
+        author: "张子涵",
+        date: "2026-08-27",
+        type: "精选"
     },
     {
         title: "关于红墨水酸碱性研究的量子叠加态报道",
