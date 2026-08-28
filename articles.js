@@ -107,6 +107,12 @@ const pendingArticles = [
         date: "2026-08-29"
     }
     */
+    {
+        title: "关于“高中男女混寝提高生育率”玩笑的综合分析",
+        url: "articles/bin/关于“高中男女混寝提高生育率”玩笑的综合分析.html",
+        author: "Dr.wang",
+        date: "2026-08-28"
+    }
 ];
 
 // HGS奖获奖论文集
