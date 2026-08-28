@@ -44,7 +44,7 @@ const articlesData = [
     },
     {
         title: "关于“高中男女混寝提高生育率”玩笑的综合分析",
-        url: "articles/bin/关于“高中男女混寝提高生育率”玩笑的综合分析.html",
+        url: "articles/common/关于“高中男女混寝提高生育率”玩笑的综合分析.html",
         author: "Dr.wang",
         date: "2026-08-28",
         type: "普通"
