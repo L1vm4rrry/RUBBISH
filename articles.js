@@ -9,10 +9,10 @@ const articlesData = [
     },
     {
         title: "有理菌分裂动力学与整数重构论",
-        url: "articles/handpicked/有理菌分裂动力学与整数重构论.html",
+        url: "articles/common/有理菌分裂动力学与整数重构论.html", // 路径改了，加了 common
         author: "Starry",
         date: "2026-08-28",
-        type: "精选"
+        type: "普通" // 保持普通
     },
     {
         title: "关于红墨水酸碱性研究的量子叠加态报道",
