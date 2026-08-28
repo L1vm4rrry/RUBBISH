@@ -35,6 +35,13 @@ const articlesData = [
         date: "2026-08-28",
         type: "普通"
     },
+    {
+        title: "在人体皮肤中植入叶绿体可以解决粮食危机吗",
+        url: "articles/common/在人体皮肤中植入叶绿体可以解决粮食危机吗.html",
+        author: "Dr.Wang",
+        date: "2026-08-28",
+        type: "普通"
+    },
     //上面是普通
     //下面是精选
     {
