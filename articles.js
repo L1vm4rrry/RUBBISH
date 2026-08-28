@@ -74,7 +74,7 @@ const articlesData = [
     },
     {
         title: "二次函数性质重构",
-        url: "articles/handpicked/二次函数性质重构与三角恒等式探究.html",
+        url: "articles/handpicked/二次函数性质重构.html",
         author: "Dr.叶 (No.3 AS 总策划)",
         date: "2026-08-28",
         type: "精选"
