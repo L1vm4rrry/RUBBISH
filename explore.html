@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 探索</title>
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     
@@ -111,7 +112,7 @@
             list.forEach(article => {
                 exploreList.innerHTML += `
                     <div class="bin-item">
-                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none; color: black;">${article.title}（${article.type}）</a></div>
+                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${article.title}（${article.type}）</a></div>
                         <div class="bin-meta">
                             <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
                         </div>
@@ -166,5 +167,6 @@
             updateList();
         }
     </script>
+    
 </body>
 </html>

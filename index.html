@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 首页</title>
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <script>
@@ -36,6 +37,7 @@
                 <div class="search-wrapper">
                     <input type="text" id="search-input-home" placeholder="搜索学术垃圾..." class="search-input">
                     <button class="search-btn" onclick="doHomeSearch()">搜索</button>
+                    <button id="theme-toggle" class="theme-btn">🌙</button>
                 </div>
             </nav>
         </header>
@@ -139,7 +141,28 @@
                 sessionStorage.setItem('announcement_shown', 'true');
             }
         };
-        
+
+        // 6. 夜间模式切换逻辑
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'dark') {
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
+        });
         function closeModal() {
             document.getElementById('announcement-modal').style.display = 'none';
         }
@@ -149,5 +172,6 @@
         // 渲染首页公告摘要
         document.getElementById('home-announcement-summary').innerHTML = announcementSummary;
     </script>
+    
 </body>
 </html>

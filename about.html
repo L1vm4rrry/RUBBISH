@@ -4,97 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 关于</title>
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     
     <style>
-        /* 终极免责声明折叠样式 */
+        /* 终极免责声明折叠样式（修复版） */
         .disclaimer-box {
             position: relative;
-            max-height: 280px; /* 默认折叠高度 */
+            max-height: 280px;
             overflow: hidden;
             transition: max-height 0.6s ease;
-            margin-bottom: 10px;
+            margin-bottom: 0; /* 盒子本身不占下方空间 */
+            padding-bottom: 10px;
         }
         .disclaimer-box.expanded {
-            max-height: 6000px; /* 展开后足够高 */
+            max-height: 6000px;
         }
+        /* 渐变遮罩层严格限制在盒子内部，不会跑出去 */
         .disclaimer-fade {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
             height: 80px;
-            background: linear-gradient(transparent, #fff);
+            /* 修改：用纯色背景代替渐变背景图，使其支持平滑过渡 */
+            background: var(--bg-card);
+            /* 使用 mask 来制造渐变效果 */
+            -webkit-mask-image: linear-gradient(transparent, black);
+            mask-image: linear-gradient(transparent, black);
             pointer-events: none;
-            transition: opacity 0.6s ease;
+            z-index: 1;
+            /* 加上和卡片一样的过渡时间，完美同步 */
+            transition: background-color 0.3s ease, opacity 0.6s ease;
         }
         .disclaimer-box.expanded .disclaimer-fade {
             opacity: 0;
         }
+        /* 按钮放在盒子外面，绝对不会被截断，也不会乱跑 */
         .disclaimer-btn {
             display: block;
             margin: 10px auto 0;
             padding: 10px 24px;
-            border: 1px solid #000;
-            background: #fff;
+            border: 1px solid var(--text-main);
+            background: var(--bg-card);
+            color: var(--text-main);
             cursor: pointer;
             font-size: 14px;
             font-weight: bold;
             border-radius: 6px;
             transition: background 0.3s;
+            position: relative;
+            z-index: 10;
         }
         .disclaimer-btn:hover {
-            background: #f0f0f0;
+            background: var(--bg-body);
         }
 
-        /* 统计图表专用样式 */
-        .stats-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+        /* 统计图表样式 */
+        .stats-container { display: flex; gap: 20px; flex-wrap: wrap; }
         .stats-box {
-            flex: 1;
-            min-width: 300px;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 20px;
-            background-color: #fafafa;
+            flex: 1; min-width: 300px; border: 1px solid var(--border);
+            border-radius: 8px; padding: 20px; background-color: var(--bg-card);
         }
         .stats-box h3 {
-            margin-top: 0;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 10px;
-            font-family: Georgia, serif;
+            margin-top: 0; border-bottom: 2px solid var(--border);
+            padding-bottom: 10px; font-family: Georgia, serif; color: var(--text-main);
         }
-        .bar-row {
-            margin-bottom: 15px;
-        }
+        .bar-row { margin-bottom: 15px; }
         .bar-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #555;
-            margin-bottom: 5px;
+            display: flex; justify-content: space-between; font-size: 14px;
+            color: var(--text-muted); margin-bottom: 5px;
         }
         .bar-track {
-            width: 100%;
-            height: 16px;
-            background-color: #e0e0e0;
-            border-radius: 8px;
-            overflow: hidden;
+            width: 100%; height: 16px; background-color: var(--border);
+            border-radius: 8px; overflow: hidden;
         }
         .bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3498db, #2980b9);
-            border-radius: 8px;
-            transition: width 0.5s ease;
-            text-align: right;
-            color: #fff;
-            font-size: 11px;
-            line-height: 16px;
-            padding-right: 4px;
+            height: 100%; background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 8px; transition: width 0.5s ease; text-align: right;
+            color: #fff; font-size: 11px; line-height: 16px; padding-right: 4px;
         }
     </style>
 </head>
@@ -175,11 +164,12 @@
                         <li><strong>宇宙安全公约：</strong>本人郑重承诺，未向三体发送过地球坐标，未向任何外星人、异次元文明、平行宇宙泄露过地球信息。</li>
                         <li><strong>物理定律豁免：</strong>若因阅读本刊中的“超导发电机”等理论导致时空扭曲或地球爆炸，本刊概不负责。</li>
                     </ol>
+                    
+                    <!-- 渐变遮罩层：严格放在盒子内部，不会跑偏 -->
+                    <div class="disclaimer-fade"></div>
                 </div>
                 
-                <!-- 渐变遮罩层 -->
-                <div class="disclaimer-fade" id="disclaimerFade"></div>
-                <!-- 展开/收起按钮 -->
+                <!-- 展开/收起按钮：在盒子外部，永远可见，且不会乱跑 -->
                 <button class="disclaimer-btn" id="disclaimerToggle">展开全文</button>
             </div>
 
@@ -188,8 +178,9 @@
                 <h2>联系方式</h2>
                 <div style="padding: 8px 0;">
                     <strong>Dr.叶的联系邮箱：</strong> 
-                    <a href="mailto:168626298@qq.com" style="color: #000; text-decoration: underline;">168626298@qq.com</a>
-                    <span style="color: #888; font-size: 14px;">（非节假日勿扰）</span>
+                    <!-- 已修复：移除写死的 #000，改用变量自动适配白天/黑夜 -->
+                    <a href="mailto:168626298@qq.com" style="color: var(--text-main); text-decoration: underline;">168626298@qq.com</a>
+                    <span style="color: var(--text-muted); font-size: 14px;">（非节假日勿扰）</span>
                 </div>
             </div>
 
@@ -197,22 +188,22 @@
             <div class="post">
                 <h2>贡献</h2>
                 
-                <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
+                <div style="border-bottom: 1px solid var(--border); padding: 8px 0;">
                     <strong>主策划：</strong> Dr.叶浅予（注：纯属同名，非国画大师本尊转世。如有雷同，实属缘分。）
-                    <span style="color: #888; font-size: 14px;">（全站代码、排版、论文、Logo、HGS奖，均由我一个人肝了10小时完成。）</span>
+                    <span style="color: var(--text-muted); font-size: 14px;">（全站代码、排版、论文、Logo、HGS奖，均由我一个人肝了10小时完成。）</span>
                 </div>
-                <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
+                <div style="border-bottom: 1px solid var(--border); padding: 8px 0;">
                     <strong>副策划：</strong> Apl_zh
-                    <span style="color: #888; font-size: 14px;">（主要负责在旁边看着、催更、提建议，然后看着我熬夜修BUG。）</span>
+                    <span style="color: var(--text-muted); font-size: 14px;">（主要负责在旁边看着、催更、提建议，然后看着我熬夜修BUG。）</span>
                 </div>
-                <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
+                <div style="border-bottom: 1px solid var(--border); padding: 8px 0;">
                     <strong>编辑：</strong> Dr.叶 & Deepseek
                 </div>
-                <div style="border-bottom: 1px solid #eee; padding: 8px 0;">
+                <div style="border-bottom: 1px solid var(--border); padding: 8px 0;">
                     <strong>审核团队：</strong> Dr.叶 & Apl_zh
                 </div>
 
-                <div style="margin-top: 25px; padding: 15px; background-color: #fce4ec; border-radius: 8px; border: 1px solid #f8bbd0; color: #c2185b;">
+                <div style="margin-top: 25px; padding: 15px; background-color: var(--toast-bg); border: 1px solid var(--toast-border); color: var(--toast-text); border-radius: 8px;">
                     <strong>感谢支持，也欢迎投稿！我们欢迎所有的“优质垃圾”！</strong>
                 </div>
             </div>
@@ -220,7 +211,7 @@
             <!-- 第五位：统计图表 -->
             <div class="post">
                 <h2>全站发稿统计（条形图）</h2>
-                <p style="color: #555; margin-bottom: 20px;">数据基于本站已发布/审稿中的内容实时计算。</p>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">数据基于本站已发布/审稿中的内容实时计算。</p>
                 
                 <div class="stats-container">
                     <div class="stats-box">
@@ -291,7 +282,7 @@
             renderBarChart('institution-stats', instMap);
         };
 
-        // 渲染条形图函数（保持不变）
+        // 渲染条形图函数
         function renderBarChart(containerId, dataMap) {
             const container = document.getElementById(containerId);
             const entries = Object.entries(dataMap).sort((a, b) => b[1] - a[1]);
@@ -312,5 +303,6 @@
             container.innerHTML = html;
         }
     </script>
+    
 </body>
 </html>

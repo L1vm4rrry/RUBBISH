@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 更新公告</title>
+
+    <!-- 防闪烁：theme.js 必须在 style.css 之前引入！ -->
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    
     <style>
+        /* 改为使用CSS变量，夜间模式自动变色 */
         .announcement-box {
-            background-color: #fce4ec;
-            border: 2px solid #f8bbd0;
-            color: #c2185b;
+            background-color: var(--toast-bg);
+            border: 2px solid var(--toast-border);
+            color: var(--toast-text);
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
             font-weight: bold;
         }
         .announcement-box h2 {
-            color: #c2185b;
+            color: var(--toast-text);
             margin-top: 0;
-            border-bottom: 2px solid #f8bbd0;
+            border-bottom: 2px solid var(--toast-border);
             padding-bottom: 10px;
         }
     </style>
