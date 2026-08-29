@@ -49,6 +49,13 @@ const articlesData = [
         date: "2026-08-28",
         type: "普通"
     },
+    {
+        title: "酸说",
+        url: "articles/common/酸说.html",
+        author: "Dr.叶",
+        date: "2026-08-29",
+        type: "普通"
+    },
     //上面是普通
     //下面是精选
     {
