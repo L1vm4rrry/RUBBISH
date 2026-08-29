@@ -1,6 +1,6 @@
 // 全站唯一公告数据库（以后改公告，只改这里！）
 const announcementSummary = `
-    <p><strong>最新刊登：</strong>《矿石病的理论根治方案》</p>
+    <p><strong>最新刊登：</strong>《矿石病的理论根治方案》 & 《血友病与十月革命》</p>
     <p><strong>新增功能：</strong>夜间模式已经更新！！！</p>
 `;
 
