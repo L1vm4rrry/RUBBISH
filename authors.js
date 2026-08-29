@@ -14,7 +14,7 @@ const authorsData = [
     { name: "XIV", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 1 },
     { name: "XIV & Dr.叶 合作探究", institution: "三中实验部 (No.3 AS)", role: "合作", count: 1 },
     { name: "张子涵", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 1 },
-
+    { name: "Espin von Linné", institution: "三中实验部 (No.3 AS)", role: "伟大的垃圾文章科学家", count: 3 },
     // 翻译/其他
     { name: "Nature / Dr.叶 翻译", institution: "其他机构", role: "翻译", count: 1 },
     { name: "匿名", institution: "其他机构", role: "匿名", count: 1 },

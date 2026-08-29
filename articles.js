@@ -99,6 +99,27 @@ const articlesData = [
         author: "Mon3tr",
         date: "2026-08-29",
         type: "精选"
+    },
+    {
+        title: "血友病B与十月革命的关系 Pt.1",
+        url: "articles/handpicked/血友病与十月革命_Pt1.html",
+        author: "Espin von Linné",
+        date: "2026-08-29",
+        type: "精选"
+    },
+    {
+        title: "血友病B与十月革命的关系 Pt.2",
+        url: "articles/handpicked/血友病与十月革命_Pt2.html",
+        author: "Espin von Linné",
+        date: "2026-08-29",
+        type: "精选"
+    },
+    {
+        title: "血友病B与十月革命的关系 Pt.3",
+        url: "articles/handpicked/血友病与十月革命_Pt3.html",
+        author: "Espin von Linné",
+        date: "2026-08-29",
+        type: "精选"
     }
     // 下面的三角函数文件你还没建，所以先注释掉。等以后写好了再解开
     /*
