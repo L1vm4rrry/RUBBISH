@@ -9,6 +9,7 @@ const announcementFullText = `
     <p><strong>新回收以下垃圾：</strong></p>
     <ul>
         <li>《矿石病的理论根治方案》 —— Mon3tr（精选）</li>
+        <li>《血友病与十月革命》 —— Espin von Linné（精选）</li>
     </ul>
     <p><strong>功能更新：</strong></p>
     <ul>
