@@ -92,6 +92,13 @@ const articlesData = [
         author: "Dr.叶 (No.3 AS 总策划)",
         date: "2026-08-28",
         type: "精选"
+    },
+    {
+        title: "矿石病的理论根治方案",
+        url: "articles/handpicked/矿石病的理论根治方案.html",
+        author: "Mon3tr",
+        date: "2026-08-29",
+        type: "精选"
     }
     // 下面的三角函数文件你还没建，所以先注释掉。等以后写好了再解开
     /*

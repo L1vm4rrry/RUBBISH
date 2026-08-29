@@ -47,6 +47,55 @@
         .disclaimer-btn:hover {
             background: #f0f0f0;
         }
+
+        /* 统计图表专用样式 */
+        .stats-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .stats-box {
+            flex: 1;
+            min-width: 300px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            background-color: #fafafa;
+        }
+        .stats-box h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+            font-family: Georgia, serif;
+        }
+        .bar-row {
+            margin-bottom: 15px;
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .bar-track {
+            width: 100%;
+            height: 16px;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 8px;
+            transition: width 0.5s ease;
+            text-align: right;
+            color: #fff;
+            font-size: 11px;
+            line-height: 16px;
+            padding-right: 4px;
+        }
     </style>
 </head>
 <body>
@@ -167,6 +216,24 @@
                     <strong>感谢支持，也欢迎投稿！我们欢迎所有的“优质垃圾”！</strong>
                 </div>
             </div>
+
+            <!-- 第五位：统计图表 -->
+            <div class="post">
+                <h2>全站发稿统计（条形图）</h2>
+                <p style="color: #555; margin-bottom: 20px;">数据基于本站已发布/审稿中的内容实时计算。</p>
+                
+                <div class="stats-container">
+                    <div class="stats-box">
+                        <h3>按作者统计</h3>
+                        <div id="author-stats"></div>
+                    </div>
+                    <div class="stats-box">
+                        <h3>按从属机构统计</h3>
+                        <div id="institution-stats"></div>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
         <footer class="footer">
@@ -174,11 +241,10 @@
         </footer>
     </div>
 
-    <!-- 展开全文功能的JS -->
     <script>
+        // 展开全文功能
         const disclaimerToggle = document.getElementById('disclaimerToggle');
         const disclaimerContent = document.getElementById('disclaimerContent');
-
         disclaimerToggle.addEventListener('click', function() {
             if (disclaimerContent.classList.contains('expanded')) {
                 disclaimerContent.classList.remove('expanded');
@@ -188,6 +254,63 @@
                 disclaimerToggle.innerText = '收起（省点流量）';
             }
         });
+    </script>
+
+    <!-- 引入作者数据和文章数据 -->
+    <script src="authors.js?v=2"></script>
+    <script src="articles.js?v=2"></script>
+    <script>
+        // 智能匹配逻辑：根据作者字符串，在authorsData里找机构和作者
+        function getAuthorInfo(authorString) {
+            // 精确匹配
+            let found = authorsData.find(a => authorString === a.name);
+            if (found) return found;
+            
+            // 包含匹配（例如："Dr.叶 (No.3 AS 总策划)" 包含 "Dr.叶"）
+            found = authorsData.find(a => authorString.includes(a.name));
+            if (found) return found;
+
+            // 都没匹配到
+            return { name: authorString, institution: "其他机构" };
+        }
+
+        // 读取作者数据库并渲染图表
+        window.onload = function() {
+            // 1. 按作者统计：直接把作者的count拿出来
+            const authorMap = {};
+            authorsData.forEach(author => {
+                authorMap[author.name] = author.count;
+            });
+            renderBarChart('author-stats', authorMap);
+
+            // 2. 按从属机构统计：把同一机构下所有人的count加起来
+            const instMap = {};
+            authorsData.forEach(author => {
+                instMap[author.institution] = (instMap[author.institution] || 0) + author.count;
+            });
+            renderBarChart('institution-stats', instMap);
+        };
+
+        // 渲染条形图函数（保持不变）
+        function renderBarChart(containerId, dataMap) {
+            const container = document.getElementById(containerId);
+            const entries = Object.entries(dataMap).sort((a, b) => b[1] - a[1]);
+            const maxCount = Math.max(...entries.map(e => e[1]), 1);
+
+            let html = '';
+            entries.forEach(([name, count]) => {
+                const widthPercent = (count / maxCount * 100).toFixed(2);
+                html += `
+                    <div class="bar-row">
+                        <div class="bar-label"><span>${name}</span><span>${count} 篇</span></div>
+                        <div class="bar-track">
+                            <div class="bar-fill" style="width: ${widthPercent}%">${count}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
     </script>
 </body>
 </html>
