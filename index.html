@@ -6,8 +6,6 @@
     <title>RUBBISH - 首页</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    
-    <!-- 支持 LaTeX 数学公式 (MathJax) -->
     <script>
     MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
@@ -36,7 +34,6 @@
                     <li><a href="hgs.html" style="color: #D4AF37; font-weight: bold;">HGS奖</a></li>
                 </ul>
                 <div class="search-wrapper">
-                    <!-- 加了 id，方便读取 -->
                     <input type="text" id="search-input-home" placeholder="搜索学术垃圾..." class="search-input">
                     <button class="search-btn" onclick="doHomeSearch()">搜索</button>
                 </div>
@@ -44,6 +41,14 @@
         </header>
 
         <main class="content">
+            <!-- 首页第一板块·更新公告摘要（只改announcement_data.js就能自动更新！） -->
+            <div class="post" style="background-color: #fce4ec; border: 2px solid #f8bbd0; color: #c2185b;">
+                <h2 style="color: #c2185b; border-bottom: 2px solid #f8bbd0; padding-bottom: 10px; margin-top: 0;">📢 更新公告</h2>
+                <div id="home-announcement-summary"></div>
+                <a href="announcement.html" style="color: #c2185b; font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 10px;">点击查看完整更新公告 →</a>
+            </div>
+
+            <!-- 原代码内容继续往下走 -->
             <div class="bin-header">
                 <h2 style="margin: 0;">首页精选 / 最新动态</h2>
                 <p style="color: #555; margin-top: 10px;">这里只展示从 <strong>articles/handpicked</strong> 中精选的优质学术垃圾。</p>
@@ -63,7 +68,7 @@
             <div style="font-size: 15px; line-height: 1.8; color: #555;">
                 <p><strong>宇宙安全声明：</strong>本站纯属虚构，所有“学术理论”仅供娱乐，请勿在现实中进行任何危险实验（比如把红墨水当酸碱指示剂，或者试图用C还原CO₂）。</p>
                 <p style="margin-top: 10px;"><strong>投稿提醒：</strong>本垃圾站欢迎各种优质垃圾，但绝不允许宣传黄赌毒贷、暴力血腥、反国言论等违法行为。一经发现，直接送入黑洞（并封号）。</p>
-                <p><strong>详情见公告哦！</strong>
+                <p><strong>不退出代表同意所有协议，详情见公告哦！</strong>
             </div>
             <button class="modal-close-btn" onclick="closeModal()">知道了！</button>
         </div>
@@ -75,7 +80,25 @@
     <!-- 加载文章数据 -->
     <script src="articles.js?v=20260828"></script>
     <script>
-        // 渲染首页精选
+        // 1. 动态加载公告摘要（从 announcement.html 抓取）
+        fetch('announcement.html')
+            .then(response => response.text())
+            .then(html => {
+                // 这里用DOMParser解析抓取下来的HTML
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                // 找到摘要内容
+                const summary = doc.getElementById('announcement-summary');
+                if (summary) {
+                    // 把摘要的内容替换到首页的公告框里（但去掉链接）
+                    document.getElementById('home-announcement-text').innerHTML = summary.querySelector('p')?.innerHTML || "暂无新公告";
+                }
+            })
+            .catch(() => {
+                document.getElementById('home-announcement-text').innerText = "公告加载失败，点击查看完整公告。";
+            });
+
+        // 2. 渲染首页精选
         const homeList = document.getElementById('home-list');
         articlesData.filter(article => article.type === "精选").forEach(article => {
             homeList.innerHTML += `
@@ -87,14 +110,13 @@
             `;
         });
 
-        // 首页搜索跳转逻辑
+        // 3. 首页搜索跳转逻辑
         function doHomeSearch() {
             const query = document.getElementById('search-input-home').value;
-            // 跳转并带上搜索词参数
             window.location.href = 'explore.html?q=' + encodeURIComponent(query);
         }
 
-        // 彩蛋逻辑
+        // 4. 彩蛋逻辑
         const homeBtn = document.querySelector('.nav-home');
         let toastTimer = null;
         if (homeBtn) {
@@ -109,8 +131,9 @@
                 }, 2000);
             });
         }
-                // 弹窗逻辑（只在每次新打开标签页时弹出一次）
-                window.onload = function() {
+
+        // 5. 弹窗逻辑
+        window.onload = function() {
             if (!sessionStorage.getItem('announcement_shown')) {
                 document.getElementById('announcement-modal').style.display = 'flex';
                 sessionStorage.setItem('announcement_shown', 'true');
@@ -120,6 +143,11 @@
         function closeModal() {
             document.getElementById('announcement-modal').style.display = 'none';
         }
+    </script>
+    <script src="announcement_data.js"></script>
+    <script>
+        // 渲染首页公告摘要
+        document.getElementById('home-announcement-summary').innerHTML = announcementSummary;
     </script>
 </body>
 </html>

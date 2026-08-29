@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 更新公告</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        .announcement-box {
+            background-color: #fce4ec;
+            border: 2px solid #f8bbd0;
+            color: #c2185b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .announcement-box h2 {
+            color: #c2185b;
+            margin-top: 0;
+            border-bottom: 2px solid #f8bbd0;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 更新公告</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                    <li><a href="hgs.html" style="color: #D4AF37; font-weight: bold;">HGS奖</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <div class="announcement-box" id="full-announcement"></div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <script src="announcement_data.js"></script>
+    <script>
+        document.getElementById('full-announcement').innerHTML = announcementFullText;
+    </script>
+</body>
+</html>
