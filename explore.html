@@ -6,6 +6,32 @@
     <title>RUBBISH - 探索</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <style>
+        .sort-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .sort-btn {
+            padding: 8px 16px;
+            border: 1px solid #ccc;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .sort-btn:hover {
+            background: #f0f0f0;
+        }
+        .sort-btn.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+    </style>
 </head>
 <body>
 
@@ -38,6 +64,14 @@
                 <h2 style="margin: 0;">全站历代稿件档案库</h2>
                 <p style="color: #555; margin-top: 10px;">这里收录了所有审核通过的文章（包含精选和普通），支持查看全部内容。</p>
             </div>
+            
+            <!-- 排序控制栏 -->
+            <div class="sort-bar">
+                <span style="font-size: 14px; color: #888;">排序方式：</span>
+                <button class="sort-btn" id="sort-time" onclick="changeSort('time')">按时间排序</button>
+                <button class="sort-btn" id="sort-name" onclick="changeSort('name')">按名字排序</button>
+            </div>
+
             <div id="explore-list"></div>
         </main>
 
@@ -51,6 +85,21 @@
         // 渲染探索页所有文章
         const exploreList = document.getElementById('explore-list');
         const searchInput = document.getElementById('search-input');
+        let currentSort = 'time'; // 默认按时间排序
+        let currentQuery = '';    // 当前搜索词
+
+        // 排序函数
+        function sortArticles(list, sortBy) {
+            const sorted = [...list];
+            if (sortBy === 'time') {
+                // 按时间倒序（最新发布在最前）
+                sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortBy === 'name') {
+                // 按标题拼音/字母顺序排序（使用localeCompare实现中文拼音排序）
+                sorted.sort((a, b) => a.title.localeCompare(b.title, 'zh'));
+            }
+            return sorted;
+        }
 
         // 核心渲染函数
         function renderArticles(list) {
@@ -71,29 +120,50 @@
             });
         }
 
-        // 初始化渲染全部文章
-        renderArticles(articlesData);
+        // 初始化渲染（先搜索，再排序）
+        function updateList() {
+            let filtered = articlesData;
+            if (currentQuery) {
+                filtered = filtered.filter(article => article.title.toLowerCase().includes(currentQuery));
+            }
+            const sorted = sortArticles(filtered, currentSort);
+            renderArticles(sorted);
+        }
+
+        // 初始化
+        updateList();
 
         // 搜索功能
         function doSearch() {
-            const query = searchInput.value.toLowerCase();
-            const filteredArticles = articlesData.filter(article => article.title.toLowerCase().includes(query));
-            renderArticles(filteredArticles);
+            currentQuery = searchInput.value.toLowerCase();
+            updateList();
         }
 
-        // 让输入框支持“回车键”直接搜索
+        // 回车搜索
         searchInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
                 doSearch();
             }
         });
 
-        // 【新增】读取首页跳转过来的URL参数，自动搜索！
+        // 切换排序
+        function changeSort(mode) {
+            currentSort = mode;
+            document.getElementById('sort-time').classList.toggle('active', mode === 'time');
+            document.getElementById('sort-name').classList.toggle('active', mode === 'name');
+            updateList();
+        }
+
+        // 默认高亮“按时间排序”
+        document.getElementById('sort-time').classList.add('active');
+
+        // 读取首页跳转过来的URL参数，自动搜索！
         const urlParams = new URLSearchParams(window.location.search);
         const urlQuery = urlParams.get('q');
         if (urlQuery) {
-            searchInput.value = urlQuery; // 自动填入搜索框
-            doSearch(); // 自动执行搜索
+            searchInput.value = urlQuery;
+            currentQuery = urlQuery.toLowerCase();
+            updateList();
         }
     </script>
 </body>
