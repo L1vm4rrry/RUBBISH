@@ -184,3 +184,16 @@ body {
 [data-theme="dark"] .date {
     color: #b8b8b8 !important; /* 确保作者/时间可见 */
 }
+
+/* 炒鸡无敌强制修复：首屏欢迎弹窗夜间模式 */
+[data-theme="dark"] .modal-content div {
+    color: var(--text-main) !important;
+}
+
+[data-theme="dark"] .modal-content strong {
+    color: var(--text-main) !important;
+}
+
+[data-theme="dark"] .modal-content {
+    border-color: var(--text-main) !important;
+}
