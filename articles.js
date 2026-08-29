@@ -127,6 +127,13 @@ const articlesData = [
         author: "Espin von Linné",
         date: "2026-08-29",
         type: "精选"
+    },
+    {
+        title: "大炎老天师·点石成金造化诀",
+        url: "articles/handpicked/大炎老天师·点石成金造化诀.html",
+        author: "Apl_zh",
+        date: "2026-08-29",
+        type: "精选"
     }
     // 下面的三角函数文件你还没建，所以先注释掉。等以后写好了再解开
     /*
