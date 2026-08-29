@@ -1,6 +1,6 @@
 // 全站唯一公告数据库（以后改公告，只改这里！）
 const announcementSummary = `
-    <p><strong>最新刊登：</strong>《矿石病的理论根治方案》 & 《血友病与十月革命》</p>
+    <p><strong>最新刊登：</strong>《矿石病的理论根治方案》 & 《血友病与十月革命》 & 《酸说》 & 《大炎老天师·点石成金造化诀》</p>
     <p><strong>新增功能：</strong>夜间模式已经更新！！！</p>
 `;
 
@@ -10,6 +10,8 @@ const announcementFullText = `
     <ul>
         <li>《矿石病的理论根治方案》 —— Mon3tr（精选）</li>
         <li>《血友病与十月革命》 —— Espin von Linné（精选）</li>
+        <li>《酸说》 —— Dr.叶（普通）</li>
+        <li>《大炎老天师·点石成金造化诀》 —— Apl_zh（精选）</li>
     </ul>
     <p><strong>功能更新：</strong></p>
     <ul>
