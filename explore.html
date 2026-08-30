@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 探索</title>
     <script src="theme.js?v=20260830"></script>
-    <link rel="stylesheet" href="style.css?v=20260830">
+    <link rel="stylesheet" href="style.css?v=20260830b">
     <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 <body>
@@ -82,6 +82,24 @@
             return sorted;
         }
 
+        // HTML 转义（防止标题/作者里出现特殊字符破坏结构）
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        // 关键词高亮：把与搜索内容匹配的文字用 <span class="search-hit"> 包起来
+        function highlightText(text, query) {
+            const escaped = escapeHtml(text);
+            if (!query) return escaped;
+            const escQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const re = new RegExp('(' + escQuery + ')', 'gi');
+            return escaped.replace(re, '<span class="search-hit">$1</span>');
+        }
+
         // 核心渲染函数
         function renderArticles(list) {
             exploreList.innerHTML = '';
@@ -97,9 +115,9 @@
                     : '<span class="tag tag-common">普通</span>';
                 exploreList.innerHTML += `
                     <div class="bin-item">
-                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${tag}${article.title}</a></div>
+                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${tag}${highlightText(article.title, currentQuery)}</a></div>
                         <div class="bin-meta">
-                            <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
+                            <span class="date">作者：${highlightText(article.author, currentQuery)} | 发布时间：${article.date}</span>
                         </div>
                     </div>
                 `;
