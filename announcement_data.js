@@ -13,6 +13,7 @@ const announcementFullText = `
     <p><strong>功能更新：</strong></p>
     <ul>
         <li>探索页搜索结果关键词高亮！与搜索内容匹配的文字会高亮显示（浅色模式蓝色 / 深色模式黄色）。</li>
+        <li>关于页新增"总策划自传（不完全虚构）"栏目。</li>
     </ul>
     <p><strong>彩蛋升级：</strong></p>
     <ul>
