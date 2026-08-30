@@ -3,7 +3,7 @@
 
 const authorsData = [
     // 主策划组
-    { name: "Dr.叶", institution: "三中实验部 (No.3 AS)", role: "主策划", count: 6 },
+    { name: "Dr.叶", institution: "三中实验部 (No.3 AS)", role: "主策划", count: 7 },
     { name: "Apl_zh", institution: "三中实验部 (No.3 AS)", role: "副策划", count: 3 },
     { name: "Dr.叶 & Apl_zh", institution: "三中实验部 (No.3 AS)", role: "联合研究", count: 1 },
 
