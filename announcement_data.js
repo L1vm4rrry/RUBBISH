@@ -1,20 +1,18 @@
 // 全站唯一公告数据库（以后改公告，只改这里！）
 const announcementSummary = `
-    <p><strong>新增功能：UI大翻新！！！</p>
+    <p><strong>最新动态：</strong>策划组新增 <strong>XIV</strong> & <strong>Espin von Linné</strong>！404 页样式问题已修复~</p>
 `;
 
 const announcementFullText = `
-    <h2>📢 最新更新公告 8.30 12:31</h2>
-    <p><strong>功能更新：</strong></p>
+    <h2>📢 最新更新公告 8.30 13:20</h2>
+    <p><strong>团队变动：</strong></p>
     <ul>
-        <li>UI翻新！</li>
-        <li>探索页升级！搜索范围从"仅标题"扩展到 标题 + 作者 + 分类；新增 分类筛选（全部/精选/普通）和 结果计数；文章列表带精选/普通标签</li>
-        <li>首页新增"最新回收的普通垃圾"板块</li> 
-        <li>首页搜索框支持回车搜索！</li>
-        <li>全站阅读进度条 + 回到顶部按钮</li>
-        <li>HGS 奖按届分组展示</li>
-        <li>响应式布局：手机/小屏下导航、Logo、卡片自动适配，之前手机上导航会溢出。</li>
-        <li>新增 404.html</li>
-        <li>新增 README.md</li>
+        <li>策划组新增两名成员：<strong>XIV</strong> 和 <strong>Espin von Linné</strong>！（审核团队保持不变，这俩不参与审核 pwp）</li>
     </ul>
+    <p><strong>功能修复：</strong></p>
+    <ul>
+        <li>修复 404 页面样式丢失问题：GitHub Pages 会把 404.html 原样返回给所有错误链接，之前从"深路径"坏链接进来时 CSS 会全部失效；现在无论从哪个坏链接进来，页面都带完整样式。</li>
+    </ul>
+    <hr style="border: none; border-top: 1px solid var(--toast-border); margin: 15px 0;">
+    <p style="font-size: 14px; font-weight: normal;"><strong>往期（8.30 12:31）：</strong>UI 翻新、探索页升级（搜索标题/作者/分类 + 筛选 + 计数）、首页"最新普通垃圾"板块、阅读进度条 + 回到顶部、HGS 按届分组、响应式布局、新增 404 页与 README。</p>
 `;

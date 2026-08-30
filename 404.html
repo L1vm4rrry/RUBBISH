@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 404 垃圾不见了</title>
+    <!--
+        404 页必须扛得住"任意深度"的错误链接：
+        GitHub Pages 会把 404.html 原样返回给所有不存在的路径，
+        此时相对路径（style.css / theme.js 等）会相对于"错误路径"解析而全部失效，页面就变成没样式的裸页面。
+        解决：在加载资源前用 <base> 把路径固定到站点根。
+        如果以后部署到自定义域名 / 用户站（URL 里没有 /RUBBISH/），把下面的 '/RUBBISH/' 改成 '/' 即可。
+    -->
+    <script>
+        (function () {
+            if (location.protocol === 'file:') return; // 本地直接打开时保持相对路径，正常预览
+            var base = document.createElement('base');
+            base.href = '/RUBBISH/';
+            document.head.appendChild(base);
+        })();
+    </script>
     <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
