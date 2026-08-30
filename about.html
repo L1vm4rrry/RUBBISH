@@ -402,7 +402,7 @@
                 hissText.style.color = '#888'; // 灰黑
                 hissText.innerText = '？';
             }
-            // 2~4次：保持开心（沿用上一次的文案，不重复说话；第3次有专属文案）
+            // 2、4次：不匹配任何分支，保持开心文案（啥也不干）
             // 6~7次：开始红温（浅红渐变）
             else if (ruaCount >= 6 && ruaCount < 8) {
                 avatar.classList.add('avatar-red');
@@ -426,7 +426,7 @@
                 document.getElementById('red-hot-modal').style.display = 'flex';
             }
             // 11次及以上：作者被摸跑了（刷新页面才会回来）
-            else {
+            else if (ruaCount >= 11) {
                 avatar.style.display = 'none';
                 avatar.style.animation = '';
                 document.getElementById('red-hot-modal').style.display = 'none';
