@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RUBBISH - 关于</title>
-    <script src="theme.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="theme.js?v=20260830"></script>
+    <link rel="stylesheet" href="style.css?v=20260830">
     <link rel="icon" type="image/png" href="images/favicon.png">
     
     <style>
@@ -92,7 +92,7 @@
             border-radius: 50%;
             border: 4px solid var(--border);
             cursor: pointer;
-            transition: transform 0.2s ease-in-out, filter 0.5s ease;
+            transition: transform 0.2s ease-in-out, filter 0.6s ease, box-shadow 0.6s ease;
             user-select: none;
             box-shadow: 0 4px 12px var(--shadow);
         }
@@ -105,9 +105,31 @@
             60% { transform: scaleY(1.1); }
             100% { transform: scaleY(1); }
         }
-        /* 越摸越红滤镜 */
+        /* 越摸越红滤镜（红温渐变三档：浅红 → 深红 → 爆红带光晕） */
         .avatar-red {
-            filter: sepia(1) saturate(3) hue-rotate(-50deg) brightness(0.95);
+            filter: sepia(0.55) saturate(2.4) hue-rotate(-50deg) brightness(1.05);
+            box-shadow: 0 0 12px rgba(255, 80, 0, 0.45);
+        }
+        .avatar-red-hot {
+            filter: sepia(0.8) saturate(3) hue-rotate(-50deg) brightness(1.0);
+            box-shadow: 0 0 22px rgba(255, 30, 0, 0.7);
+        }
+        .avatar-red-max {
+            filter: sepia(1) saturate(3.2) hue-rotate(-50deg) brightness(1.0);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.9);
+        }
+        /* 护眼模式也不许偷懒：红温滤镜照常生效（优先级高于全局护眼滤镜） */
+        [data-theme="dark"] img.avatar-red {
+            filter: sepia(0.55) saturate(2.4) hue-rotate(-50deg) brightness(1.05);
+            box-shadow: 0 0 14px rgba(255, 80, 0, 0.6);
+        }
+        [data-theme="dark"] img.avatar-red-hot {
+            filter: sepia(0.8) saturate(3) hue-rotate(-50deg) brightness(1.0);
+            box-shadow: 0 0 24px rgba(255, 30, 0, 0.8);
+        }
+        [data-theme="dark"] img.avatar-red-max {
+            filter: sepia(1) saturate(3.2) hue-rotate(-50deg) brightness(1.0);
+            box-shadow: 0 0 34px rgba(255, 0, 0, 1);
         }
     </style>
 </head>
@@ -380,25 +402,35 @@
                 hissText.style.color = '#888'; // 灰黑
                 hissText.innerText = '？';
             }
-            // 6次及以上：越来越红（又羞又气）
-            else if (ruaCount >= 6) {
-                // 开始给图片加滤镜变红
+            // 6~7次：开始红温（浅红渐变）
+            else if (ruaCount < 8) {
                 avatar.classList.add('avatar-red');
-                
-                if (ruaCount < 8) {
-                    hissText.style.color = '#ff5722'; // 橙色
-                    hissText.innerText = '再摸我就要咬人了！';
-                } else if (ruaCount < 10) {
-                    hissText.style.color = '#d32f2f'; // 深红
-                    hissText.innerText = '我要哈了！(ノ｀Д)ノ';
-                } else {
-                    hissText.style.color = '#b71c1c'; // 正红
-                    hissText.innerText = '不要摸了！🔥🔥🔥';
-                    avatar.style.animation = 'shake 0.3s infinite';
-                    
-                    // 【新增】红温之后直接弹出收款码！
-                    document.getElementById('red-hot-modal').style.display = 'flex';
-                }
+                hissText.style.color = '#ff5722'; // 橙色
+                hissText.innerText = '再摸我就要咬人了！';
+            }
+            // 8~9次：更红了
+            else if (ruaCount < 10) {
+                avatar.classList.remove('avatar-red');
+                avatar.classList.add('avatar-red-hot');
+                hissText.style.color = '#d32f2f'; // 深红
+                hissText.innerText = '我要哈了！(ノ｀Д)ノ';
+            }
+            // 10次：红温爆表 + 弹出收款码！
+            else if (ruaCount === 10) {
+                avatar.classList.remove('avatar-red-hot');
+                avatar.classList.add('avatar-red-max');
+                hissText.style.color = '#b71c1c'; // 正红
+                hissText.innerText = '不要摸了！🔥🔥🔥';
+                avatar.style.animation = 'shake 0.3s infinite';
+                document.getElementById('red-hot-modal').style.display = 'flex';
+            }
+            // 11次及以上：作者被摸跑了（刷新页面才会回来）
+            else {
+                avatar.style.display = 'none';
+                avatar.style.animation = '';
+                document.getElementById('red-hot-modal').style.display = 'none';
+                hissText.style.color = '#b71c1c';
+                hissText.innerText = '走了走了不给你摸了';
             }
         });
 
