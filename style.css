@@ -258,7 +258,7 @@ body {
 .tag-common { color: var(--text-muted); }
 [data-theme="dark"] .tag-picked { color: #e8c76a; }
 
-/* ========== 搜索结果关键词高亮（浅色蓝 / 深色黄） ========== */
+/* ========== 搜索结果关键词高亮（浅色蓝 / 深色黄底黑字） ========== */
 .search-hit {
     background: #cfe8ff;   /* 浅色模式：蓝色高亮 */
     color: #0b3d91;
@@ -267,7 +267,12 @@ body {
 }
 [data-theme="dark"] .search-hit {
     background: #ffd54f;   /* 深色模式：黄色高亮 */
-    color: #4e342e;
+}
+/* 深色模式高亮字体纯黑；选择器特意提到 .bin-title/.bin-meta 层级（0,3,0），
+   以压过 [data-theme="dark"] .bin-meta span 的 !important 灰色（0,2,1） */
+[data-theme="dark"] .bin-title .search-hit,
+[data-theme="dark"] .bin-meta .search-hit {
+    color: #000 !important;
 }
 
 /* ========== HGS 组件 ========== */

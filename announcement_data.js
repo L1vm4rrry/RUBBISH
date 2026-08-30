@@ -26,6 +26,8 @@ const announcementFullText = `
         <li>全站 CSS/JS 统一加上版本号，解决浏览器缓存导致"改了但看不到"的问题；并补上《叶绿体》文章缺失的夜间模式脚本。</li>
         <li>修复摸头彩蛋文案 bug：第 2、4 次点击不再误显示"再摸我就要咬人了"，恢复为保持开心文案。</li>
         <li>再修一次：跑路分支改成显式 >=11 次触发，第 2、4 次点击不会再误触"跑路"了。</li>
+        <li>深色模式搜索高亮字体改为纯黑（黄底黑字，对比度拉满）。</li>
+        <li>再修：作者栏的高亮字体现在也纯黑了（压过了暗色元数据灰色规则）。</li>
     </ul>
     <hr style="border: none; border-top: 1px solid var(--toast-border); margin: 15px 0;">
     <p style="font-size: 14px; font-weight: normal;"><strong>往期（8.30 13:20 那条）：</strong>策划组新增 XIV & Espin von Linné（不参与审核）；修复 404 页面深路径下样式丢失。<br><strong>往期（8.30 12:31）：</strong>UI 翻新、探索页升级（搜索标题/作者/分类 + 筛选 + 计数）、首页"最新普通垃圾"板块、阅读进度条 + 回到顶部、HGS 按届分组、响应式布局、新增 404 页与 README。</p>
