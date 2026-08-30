@@ -19,6 +19,7 @@ const announcementFullText = `
         <li>修正上一条公告的日期错误（顺手把策划组新人 & 404 修复挪进往期）。</li>
         <li>该文章作者更正为 Dr.叶（不是匿名，人家有名字的 pwp）。</li>
         <li>全站 CSS/JS 统一加上版本号，解决浏览器缓存导致"改了但看不到"的问题；并补上《叶绿体》文章缺失的夜间模式脚本。</li>
+        <li>修复摸头彩蛋文案 bug：第 2、4 次点击不再误显示"再摸我就要咬人了"，恢复为保持开心文案。</li>
     </ul>
     <hr style="border: none; border-top: 1px solid var(--toast-border); margin: 15px 0;">
     <p style="font-size: 14px; font-weight: normal;"><strong>往期（8.30 13:20 那条）：</strong>策划组新增 XIV & Espin von Linné（不参与审核）；修复 404 页面深路径下样式丢失。<br><strong>往期（8.30 12:31）：</strong>UI 翻新、探索页升级（搜索标题/作者/分类 + 筛选 + 计数）、首页"最新普通垃圾"板块、阅读进度条 + 回到顶部、HGS 按届分组、响应式布局、新增 404 页与 README。</p>
