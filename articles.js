@@ -141,6 +141,13 @@ const articlesData = [
         author: "Apl_zh",
         date: "2026-08-29",
         type: "精选"
+    },
+    {
+        title: "湖心亭看雪（英语胡乱手译版）",
+        url: "articles/handpicked/湖心亭看雪（英语胡乱手译版）.html",
+        author: "XIV",
+        date: "2026-08-30",
+        type: "精选"
     }
     // 下面的三角函数文件你还没建，所以先注释掉。等以后写好了再解开
     /*

@@ -1,12 +1,13 @@
 // 全站唯一公告数据库（以后改公告，只改这里！）
 const announcementSummary = `
-    <p><strong>最新刊登：</strong>《关于碳酸钙（CaCO₃）与三钴化钙（CaCo₃）在宇宙社会学与微观语言学层面之关联性初探》—— Dr.叶</p>
+    <p><strong>最新刊登：</strong>《湖心亭看雪（英语胡乱手译版）》—— XIV（精选）</p>
 `;
 
 const announcementFullText = `
     <h2>📢 最新更新公告 8.30 12:58</h2>
     <p><strong>新回收以下垃圾：</strong></p>
     <ul>
+        <li>《湖心亭看雪（英语胡乱手译版）》 —— XIV（精选）</li>
         <li>《关于碳酸钙（CaCO₃）与三钴化钙（CaCo₃）在宇宙社会学与微观语言学层面之关联性初探（暨对化学符号大小写不敏感之批判）》 —— Dr.叶（普通）</li>
     </ul>
     <p><strong>彩蛋升级：</strong></p>

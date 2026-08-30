@@ -11,7 +11,7 @@ const authorsData = [
     { name: "Starry", institution: "Fuixin 小学", role: "研究员", count: 1 },
     { name: "Mon3tr", institution: "罗德岛医疗部", role: "特邀", count: 1 },
     { name: "Dr.Wang", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 2 },
-    { name: "XIV", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 1 },
+    { name: "XIV", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 2 },
     { name: "XIV & Dr.叶 合作探究", institution: "三中实验部 (No.3 AS)", role: "合作", count: 1 },
     { name: "张子涵", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 1 },
     { name: "Espin von Linné", institution: "三中实验部 (No.3 AS)", role: "伟大的垃圾文章科学家", count: 3 },
