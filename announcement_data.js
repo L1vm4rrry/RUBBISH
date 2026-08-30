@@ -13,6 +13,7 @@ const announcementFullText = `
     <ul>
         <li>修正上一条公告的日期错误（顺手把策划组新人 & 404 修复挪进往期）。</li>
         <li>该文章作者更正为 Dr.叶（不是匿名，人家有名字的 pwp）。</li>
+        <li>修复护眼模式下"摸摸作者"红温滤镜失效的问题（作者现在在夜间模式也能红温了嘿嘿）。</li>
     </ul>
     <hr style="border: none; border-top: 1px solid var(--toast-border); margin: 15px 0;">
     <p style="font-size: 14px; font-weight: normal;"><strong>往期（8.30 13:20 那条）：</strong>策划组新增 XIV & Espin von Linné（不参与审核）；修复 404 页面深路径下样式丢失。<br><strong>往期（8.30 12:31）：</strong>UI 翻新、探索页升级（搜索标题/作者/分类 + 筛选 + 计数）、首页"最新普通垃圾"板块、阅读进度条 + 回到顶部、HGS 按届分组、响应式布局、新增 404 页与 README。</p>

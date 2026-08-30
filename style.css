@@ -182,6 +182,11 @@ body {
     filter: brightness(0.8); /* 稍微变暗一点，护眼 */
 }
 
+/* 护眼模式也不许偷懒：摸摸作者的红温滤镜必须照常生效（否则作者永远红不了 pwp） */
+[data-theme="dark"] img.avatar-red {
+    filter: sepia(1) saturate(3) hue-rotate(-50deg) brightness(0.95);
+}
+
 /* 终极强制修复：夜间模式文章标题颜色 */
 [data-theme="dark"] .bin-title a,
 [data-theme="dark"] .post h2 a {
