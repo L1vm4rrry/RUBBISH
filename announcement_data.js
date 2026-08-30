@@ -4,7 +4,7 @@ const announcementSummary = `
 `;
 
 const announcementFullText = `
-    <h2>📢 最新更新公告 8.30 12:58</h2>
+    <h2>📢 最新更新公告 8.30 18:45</h2>
     <p><strong>新回收以下垃圾：</strong></p>
     <ul>
         <li>《湖心亭看雪（英语胡乱手译版）》 —— XIV（精选）</li>
