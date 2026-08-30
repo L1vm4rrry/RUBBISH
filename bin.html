@@ -62,7 +62,7 @@
             pendingArticles.forEach(article => {
                 pendingList.innerHTML += `
                     <div class="bin-item">
-                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none; color: black;">${article.title}</a></div>
+                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${article.title}</a></div>
                         <div class="bin-meta">
                             <span class="status-pending">等待审核中</span>
                             <span class="date">作者：${article.author} | 交稿时间：${article.date}</span>

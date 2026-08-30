@@ -49,22 +49,26 @@
     <script src="articles.js"></script>
     <script>
         const hgsList = document.getElementById('hgs-list');
+        let currentIssue = '';
         hgsAwards.forEach(award => {
+            // 同一届的奖项分组显示（届名变化时才输出分组标题）
+            if (award.issue !== currentIssue) {
+                currentIssue = award.issue;
+                hgsList.innerHTML += `<div class="hgs-issue-header">${currentIssue} 获奖名单</div>`;
+            }
             hgsList.innerHTML += `
                 <div class="hgs-card">
                     <div class="hgs-issue">${award.issue}</div>
                     <div class="hgs-winner">${award.title}</div>
                     <div class="hgs-author">获奖者：${award.author}</div>
                     
-                    <!-- 摘要区 -->
-                    <div style="margin: 15px 0; padding: 15px; background: #f9f9f9; border-left: 4px solid #D4AF37; border-radius: 4px; text-align: left; color: #555; font-size: 15px; line-height: 1.6;">
-                        <strong style="color: #B8860B;">摘要：</strong>${award.summary}
+                    <!-- 摘要区（样式统一放在 style.css，自动适配夜间模式） -->
+                    <div class="hgs-summary">
+                        <strong>摘要：</strong>${award.summary}
                     </div>
 
                     <!-- 查看原文按钮 -->
-                    <a href="${award.url}" style="display: inline-block; margin-top: 10px; background-color: #D4AF37; color: #fff; padding: 10px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; transition: all 0.3s;">
-                        查看原文 →
-                    </a>
+                    <a href="${award.url}" class="hgs-read-btn">查看原文 →</a>
                 </div>
             `;
         });

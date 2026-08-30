@@ -7,32 +7,6 @@
     <script src="theme.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
-    
-    <style>
-        .sort-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            align-items: center;
-        }
-        .sort-btn {
-            padding: 8px 16px;
-            border: 1px solid #ccc;
-            background: #fff;
-            cursor: pointer;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: all 0.2s;
-        }
-        .sort-btn:hover {
-            background: #f0f0f0;
-        }
-        .sort-btn.active {
-            background: #000;
-            color: #fff;
-            border-color: #000;
-        }
-    </style>
 </head>
 <body>
 
@@ -54,7 +28,7 @@
                     <li><a href="hgs.html" style="color: #D4AF37; font-weight: bold;">HGS奖</a></li>
                 </ul>
                 <div class="search-wrapper">
-                    <input type="text" id="search-input" placeholder="输入标题搜垃圾..." class="search-input">
+                    <input type="text" id="search-input" placeholder="搜索标题 / 作者..." class="search-input">
                     <button class="search-btn" onclick="doSearch()">搜索</button>
                 </div>
             </nav>
@@ -63,14 +37,19 @@
         <main class="content">
             <div class="bin-header">
                 <h2 style="margin: 0;">全站历代稿件档案库</h2>
-                <p style="color: #555; margin-top: 10px;">这里收录了所有审核通过的文章（包含精选和普通），支持查看全部内容。</p>
+                <p style="color: #555; margin-top: 10px;">这里收录了所有审核通过的文章（包含精选和普通），支持搜索、分类筛选与排序。</p>
             </div>
             
-            <!-- 排序控制栏 -->
-            <div class="sort-bar">
-                <span style="font-size: 14px; color: #888;">排序方式：</span>
-                <button class="sort-btn" id="sort-time" onclick="changeSort('time')">按时间排序</button>
-                <button class="sort-btn" id="sort-name" onclick="changeSort('name')">按名字排序</button>
+            <!-- 筛选 + 排序控制栏 -->
+            <div class="filter-bar">
+                <span style="font-size: 14px; color: #888;">分类：</span>
+                <button class="filter-btn active" data-type="all" onclick="changeFilter('all')">全部</button>
+                <button class="filter-btn" data-type="精选" onclick="changeFilter('精选')">精选</button>
+                <button class="filter-btn" data-type="普通" onclick="changeFilter('普通')">普通</button>
+                <span style="font-size: 14px; color: #888; margin-left: 10px;">排序：</span>
+                <button class="sort-btn active" id="sort-time" onclick="changeSort('time')">按时间</button>
+                <button class="sort-btn" id="sort-name" onclick="changeSort('name')">按名字</button>
+                <span id="result-count" style="font-size: 13px; color: #888; margin-left: auto;"></span>
             </div>
 
             <div id="explore-list"></div>
@@ -83,11 +62,12 @@
 
     <script src="articles.js"></script>
     <script>
-        // 渲染探索页所有文章
         const exploreList = document.getElementById('explore-list');
         const searchInput = document.getElementById('search-input');
-        let currentSort = 'time'; // 默认按时间排序
-        let currentQuery = '';    // 当前搜索词
+        const resultCount = document.getElementById('result-count');
+        let currentSort = 'time';   // 默认按时间排序
+        let currentQuery = '';      // 当前搜索词
+        let currentType = 'all';    // 当前分类筛选
 
         // 排序函数
         function sortArticles(list, sortBy) {
@@ -96,7 +76,7 @@
                 // 按时间倒序（最新发布在最前）
                 sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
             } else if (sortBy === 'name') {
-                // 按标题拼音/字母顺序排序（使用localeCompare实现中文拼音排序）
+                // 按标题拼音/字母顺序排序（localeCompare 实现中文拼音排序）
                 sorted.sort((a, b) => a.title.localeCompare(b.title, 'zh'));
             }
             return sorted;
@@ -107,12 +87,17 @@
             exploreList.innerHTML = '';
             if (list.length === 0) {
                 exploreList.innerHTML = '<div style="text-align: center; padding: 30px; color: #888;">没有找到匹配的学术垃圾，换个词试试？</div>';
+                resultCount.textContent = '';
                 return;
             }
+            resultCount.textContent = '共 ' + list.length + ' 篇';
             list.forEach(article => {
+                const tag = article.type === '精选'
+                    ? '<span class="tag tag-picked">精选</span>'
+                    : '<span class="tag tag-common">普通</span>';
                 exploreList.innerHTML += `
                     <div class="bin-item">
-                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${article.title}（${article.type}）</a></div>
+                        <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${tag}${article.title}</a></div>
                         <div class="bin-meta">
                             <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
                         </div>
@@ -121,22 +106,27 @@
             });
         }
 
-        // 初始化渲染（先搜索，再排序）
+        // 初始化渲染（先筛选，再搜索，再排序）
         function updateList() {
             let filtered = articlesData;
-            if (currentQuery) {
-                filtered = filtered.filter(article => article.title.toLowerCase().includes(currentQuery));
+            if (currentType !== 'all') {
+                filtered = filtered.filter(article => article.type === currentType);
             }
-            const sorted = sortArticles(filtered, currentSort);
-            renderArticles(sorted);
+            if (currentQuery) {
+                const q = currentQuery.toLowerCase();
+                filtered = filtered.filter(article =>
+                    (article.title + ' ' + article.author + ' ' + article.type).toLowerCase().includes(q)
+                );
+            }
+            renderArticles(sortArticles(filtered, currentSort));
         }
 
         // 初始化
         updateList();
 
-        // 搜索功能
+        // 搜索功能（标题 / 作者 / 分类都能搜）
         function doSearch() {
-            currentQuery = searchInput.value.toLowerCase();
+            currentQuery = searchInput.value.trim();
             updateList();
         }
 
@@ -155,15 +145,21 @@
             updateList();
         }
 
-        // 默认高亮“按时间排序”
-        document.getElementById('sort-time').classList.add('active');
+        // 切换分类筛选
+        function changeFilter(type) {
+            currentType = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.type === type);
+            });
+            updateList();
+        }
 
         // 读取首页跳转过来的URL参数，自动搜索！
         const urlParams = new URLSearchParams(window.location.search);
         const urlQuery = urlParams.get('q');
         if (urlQuery) {
             searchInput.value = urlQuery;
-            currentQuery = urlQuery.toLowerCase();
+            currentQuery = urlQuery.trim();
             updateList();
         }
     </script>

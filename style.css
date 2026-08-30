@@ -110,12 +110,24 @@ body {
 /* 页脚 */
 .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 13px; }
 
-/* 公告内联样式覆盖（强制暗色） */
-[data-theme="dark"] .post[style*="background-color: #fce4ec"] {
-    background-color: var(--toast-bg) !important;
-    color: var(--toast-text) !important;
-    border-color: var(--toast-border) !important;
+/* 公告框（首页摘要 / 公告页通用，自动适配夜间模式） */
+.announcement-box {
+    background-color: var(--toast-bg);
+    border: 2px solid var(--toast-border);
+    color: var(--toast-text);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
+.announcement-box h2 {
+    color: var(--toast-text);
+    border-bottom: 2px solid var(--toast-border);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+.announcement-box p { margin: 8px 0; }
+.announcement-box a { color: inherit; text-decoration-color: currentColor; }
 
 /* 免责声明折叠 */
 .disclaimer-box { position: relative; max-height: 280px; overflow: hidden; transition: max-height 0.6s ease; margin-bottom: 10px; }
@@ -185,6 +197,13 @@ body {
     color: #b8b8b8 !important; /* 确保作者/时间可见 */
 }
 
+/* 夜间模式下页面说明文字（#555/#888）提亮，保证可读 */
+[data-theme="dark"] .bin-header p,
+[data-theme="dark"] .filter-bar span,
+[data-theme="dark"] #result-count {
+    color: #b0b0b0;
+}
+
 /* 炒鸡无敌强制修复：首屏欢迎弹窗夜间模式 */
 [data-theme="dark"] .modal-content div {
     color: var(--text-main) !important;
@@ -196,4 +215,139 @@ body {
 
 [data-theme="dark"] .modal-content {
     border-color: var(--text-main) !important;
+}
+
+/* ========== 探索页：筛选/排序按钮（自动适配夜间模式） ========== */
+.sort-btn, .filter-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-main);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.sort-btn:hover, .filter-btn:hover { background: var(--bg-body); }
+.sort-btn.active, .filter-btn.active {
+    background: var(--text-main);
+    color: var(--bg-body);
+    border-color: var(--text-main);
+}
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ========== 文章类型标签 ========== */
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid currentColor;
+}
+.tag-picked { color: #b8860b; }
+.tag-common { color: var(--text-muted); }
+[data-theme="dark"] .tag-picked { color: #e8c76a; }
+
+/* ========== HGS 组件 ========== */
+.hgs-issue-header {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--gold-dark);
+    margin: 30px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--gold);
+}
+[data-theme="dark"] .hgs-issue-header { color: #e8c76a; }
+.hgs-summary {
+    margin: 15px 0;
+    padding: 15px;
+    background: var(--bg-card);
+    border-left: 4px solid var(--gold);
+    border-radius: 4px;
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+.hgs-summary strong { color: var(--gold-dark); }
+[data-theme="dark"] .hgs-summary strong { color: #e8c76a; }
+.hgs-read-btn {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: var(--gold);
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.hgs-read-btn:hover { background-color: var(--gold-dark); transform: translateY(-2px); }
+
+/* ========== 全局小工具：阅读进度条 + 回到顶部（由 theme.js 注入） ========== */
+#reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: linear-gradient(90deg, var(--gold), #e91e63);
+    z-index: 99999;
+    transition: width 0.1s ease-out;
+}
+#back-to-top {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--bg-card);
+    color: var(--gold-dark);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+#back-to-top.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+#back-to-top:hover { background: var(--gold); color: #fff; }
+
+/* ========== 响应式布局（手机/小屏适配） ========== */
+@media (max-width: 720px) {
+    .container { padding: 20px 12px; }
+    .header-top { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .logo { font-size: 34px; }
+    .tagline { font-size: 14px; }
+    .main-nav { flex-direction: column; align-items: stretch; gap: 12px; }
+    .main-nav ul { flex-wrap: wrap; gap: 12px 16px; }
+    .search-wrapper { width: 100%; }
+    .search-input { flex: 1; min-width: 0; }
+    .stats-container { flex-direction: column; }
+    .hgs-main-title { font-size: 40px; }
+    .post h2, .bin-title { font-size: 18px; }
+    .filter-bar { gap: 8px; }
+    #back-to-top { right: 14px; bottom: 14px; width: 40px; height: 40px; }
+}
+@media (max-width: 480px) {
+    .logo { font-size: 28px; }
+    .page-subtitle { display: none; }
+    .bin-meta { flex-wrap: wrap; gap: 8px; }
+    .hgs-card { padding: 20px; }
+    .hgs-winner { font-size: 22px; }
 }

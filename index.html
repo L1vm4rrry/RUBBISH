@@ -44,10 +44,10 @@
 
         <main class="content">
             <!-- 首页第一板块·更新公告摘要（只改announcement_data.js就能自动更新！） -->
-            <div class="post" style="background-color: #fce4ec; border: 2px solid #f8bbd0; color: #c2185b;">
-                <h2 style="color: #c2185b; border-bottom: 2px solid #f8bbd0; padding-bottom: 10px; margin-top: 0;">📢 更新公告</h2>
+            <div class="post announcement-box">
+                <h2>📢 更新公告</h2>
                 <div id="home-announcement-summary"></div>
-                <a href="announcement.html" style="color: #c2185b; font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 10px;">点击查看完整更新公告 →</a>
+                <a href="announcement.html" style="font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 10px;">点击查看完整更新公告 →</a>
             </div>
 
             <!-- 原代码内容继续往下走 -->
@@ -56,6 +56,13 @@
                 <p style="color: #555; margin-top: 10px;">这里只展示从 <strong>articles/handpicked</strong> 中精选的优质学术垃圾。</p>
             </div>
             <div id="home-list"></div>
+
+            <!-- 首页第二板块·最新普通垃圾（同样从 articles.js 自动读取） -->
+            <div class="bin-header" style="margin-top: 40px;">
+                <h2 style="margin: 0;">最新回收的普通垃圾</h2>
+                <p style="color: #555; margin-top: 10px;">这里展示最近回收的 <strong>普通</strong> 学术垃圾，完整档案请到<a href="explore.html">探索页</a>查看。</p>
+            </div>
+            <div id="recent-list"></div>
         </main>
 
         <footer class="footer">
@@ -82,25 +89,7 @@
     <!-- 加载文章数据 -->
     <script src="articles.js?v=20260828"></script>
     <script>
-        // 1. 动态加载公告摘要（从 announcement.html 抓取）
-        fetch('announcement.html')
-            .then(response => response.text())
-            .then(html => {
-                // 这里用DOMParser解析抓取下来的HTML
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                // 找到摘要内容
-                const summary = doc.getElementById('announcement-summary');
-                if (summary) {
-                    // 把摘要的内容替换到首页的公告框里（但去掉链接）
-                    document.getElementById('home-announcement-text').innerHTML = summary.querySelector('p')?.innerHTML || "暂无新公告";
-                }
-            })
-            .catch(() => {
-                document.getElementById('home-announcement-text').innerText = "公告加载失败，点击查看完整公告。";
-            });
-
-        // 2. 渲染首页精选
+        // 1. 渲染首页精选（数据来源：articles.js，type === "精选"）
         const homeList = document.getElementById('home-list');
         articlesData.filter(article => article.type === "精选").forEach(article => {
             homeList.innerHTML += `
@@ -112,13 +101,17 @@
             `;
         });
 
-        // 3. 首页搜索跳转逻辑
+        // 2. 首页搜索跳转逻辑
         function doHomeSearch() {
-            const query = document.getElementById('search-input-home').value;
+            const query = document.getElementById('search-input-home').value.trim();
             window.location.href = 'explore.html?q=' + encodeURIComponent(query);
         }
+        // 在搜索框里按回车也能搜索
+        document.getElementById('search-input-home').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') doHomeSearch();
+        });
 
-        // 4. 彩蛋逻辑
+        // 3. 彩蛋逻辑
         const homeBtn = document.querySelector('.nav-home');
         let toastTimer = null;
         if (homeBtn) {
@@ -134,7 +127,7 @@
             });
         }
 
-        // 5. 弹窗逻辑
+        // 4. 弹窗逻辑
         window.onload = function() {
             if (!sessionStorage.getItem('announcement_shown')) {
                 document.getElementById('announcement-modal').style.display = 'flex';
@@ -142,7 +135,7 @@
             }
         };
 
-        // 6. 夜间模式切换逻辑
+        // 5. 夜间模式切换逻辑
         const themeToggle = document.getElementById('theme-toggle');
         const currentTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', currentTheme);
@@ -171,6 +164,30 @@
     <script>
         // 渲染首页公告摘要
         document.getElementById('home-announcement-summary').innerHTML = announcementSummary;
+    </script>
+    <script>
+        // 渲染"最新回收的普通垃圾"：取最近的 5 篇普通文章
+        const recentList = document.getElementById('recent-list');
+        if (recentList) {
+            const recent = articlesData
+                .filter(article => article.type === "普通")
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5);
+            if (recent.length === 0) {
+                recentList.innerHTML = '<div style="text-align: center; padding: 20px; color: #888;">暂时还没有普通垃圾，欢迎投稿！</div>';
+            } else {
+                recent.forEach(article => {
+                    recentList.innerHTML += `
+                        <div class="bin-item">
+                            <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${article.title}</a></div>
+                            <div class="bin-meta">
+                                <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
     </script>
     
 </body>
