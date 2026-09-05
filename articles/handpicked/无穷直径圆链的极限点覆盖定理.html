@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>无穷直径圆链的极限点覆盖定理</title>
+    <!-- 因为文章在 articles/handpicked 里，CSS路径要往上跳两级 -->
+    <script src="../../theme.js?v=20260830"></script>
+    <link rel="stylesheet" href="../../style.css?v=20260830d">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
+    <!-- 支持 LaTeX 数学公式 (MathJax) -->
+    <script>
+    MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 返回主导航 -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html" class="nav-home">← 返回首页</a></li>
+                <li><a href="../../explore.html">探索</a></li>
+            </ul>
+        </nav>
+
+        <main class="content" style="margin-top: 30px;">
+            <div style="border-bottom: 2px solid var(--border); padding-bottom: 20px; margin-bottom: 30px;">
+                <h1 style="font-family: Georgia, serif; font-size: 30px; margin-bottom: 10px;">无穷直径圆链的极限点覆盖定理（暨"半个半个地画圆能否点满整个圆盘"之研究）</h1>
+                
+                <p style="font-size: 16px; font-weight: bold;">Researcher: Dr.叶</p>
+                <p style="font-size: 14px; color: var(--text-muted);">No.3 Middle School Science and Technology Innovation Academy (No.3 AS) · 总策划</p>
+                <p style="font-size: 14px; color: var(--text-muted);">（本文为Rubbish期刊精选类学术垃圾）</p>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">摘要</h2>
+            <p>本文考察如下无穷构造：于圆 $O_0$（半径 $x$）上任取一点，将其与圆心连成线段，并以该线段为直径作圆 $O_1$；此后递归重复，且每一步的接触点可在上一圆上任意转动（等价于圆 $O_n$ 可绕 $O_{n-1}$ 之圆心任意旋转）。设圆链无穷延伸、末圆收缩为一点 $L$。本文证明：<strong>极限点 $L$ 可取遍整个闭圆盘 $\overline{O_0}$</strong>——圆周、内部任意点、乃至圆心本身皆可被表示，并给出贪心构造算法、"方向二进制展开"的解释，以及半径缩减比的临界性讨论。全文包含若干不必要的数学，请勿用于任何实际工程。</p>
+            <p style="font-size: 15px; color: var(--text-muted);"><strong style="color: var(--text-main);">关键词：</strong>无穷圆链；直径构造；极限点；凸级数；贪心算法；方向二进制展开；有用但不确定</p>
+
+            <!-- 人话版 -->
+            <div style="background: var(--toast-bg); border: 1px solid var(--toast-border); color: var(--toast-text); padding: 15px 18px; border-radius: 8px; margin-bottom: 25px; font-size: 15px; line-height: 1.9;">
+                <strong>人话版（如果后面看不懂，只看这里）：</strong><br>
+                每一步：以前一个圆的圆心为起点，朝圆上任意一点连线，取中点当新圆心——所以每走一步，半径减半，方向随便挑。<br>
+                这就好比<strong>二进制小数</strong>：小数点后每一位只有 0 或 1 两种选择，但位数无穷多，照样能精确写出 0 到 1 之间的任何数。这里每一层的"方向"就是一位"二进制数字"，层数无穷多，就能精确到达圆盘内<strong>任何</strong>一点。<br>
+                怎么走到目标点 Z？贪心：每一步都朝 Z 走最大的一步（当前半径的一半），每走一步误差减半，无穷步后误差为 0。<br>
+                <strong>连圆心都能到</strong>：先往右一步，再一路向左——$\frac12 - \frac14 - \frac18 - \cdots = 0$。<br>
+                所以答案是：<strong>能！圆内（含圆周）任何一点都可以被这条无穷圆链表示出来。</strong>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">1. 问题的严格化</h2>
+            <p>设圆 $O_0$ 的圆心为 $C_0$、半径为 $r_0 = x$。构造规则可形式化如下：</p>
+            <ul>
+                <li>第 $n$ 步：在圆 $O_{n-1}$ 的圆周上<strong>任取</strong>一点 $P_n$（即"接触点"，可绕 $C_{n-1}$ 任意转动）；</li>
+                <li>以线段 $C_{n-1}P_n$ 为直径作圆 $O_n$，于是 $O_n$ 的圆心 $C_n = \dfrac{C_{n-1} + P_n}{2}$，半径 $r_n = \dfrac{r_{n-1}}{2} = \dfrac{x}{2^n}$；</li>
+                <li>易见 $O_n$ 过 $C_{n-1}$（$O_{n-1}$ 的圆心在其圆周上），且与 $O_{n-1}$ 内切于点 $P_n$，故 $O_n \subset O_{n-1}$。</li>
+            </ul>
+            <p>圆嵌套且半径趋于零，故极限点 $L = \lim_{n \to \infty} C_n$ 存在且唯一。"最后一个圆为点"的科学表述即 $r_n \to 0$、圆链收缩于 $L$。</p>
+            <p><strong>原问题：</strong>对圆 $O_0$ 上（或其内部）任意指定的点 $Z$，是否存在一条圆链使得 $L = Z$？</p>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../../images/limit_chain.svg" alt="三层圆链构造示意图" onerror="this.style.display='none'" style="max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">图1：三层圆链构造示意（$O_0, O_1, O_2, O_3$，接触点 $P_1, P_2, P_3$，半径逐层减半）</p>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">2. 关键化简：圆链 ⇔ 单位向量级数</h2>
+            <p>令 $u_n = \dfrac{P_n - C_{n-1}}{r_{n-1}}$，即"第 $n$ 次转动的方向"——一个单位向量。则由递推式：</p>
+            <p style="text-align: center; font-size: 1.15em; margin: 15px 0;">
+                $$C_n = C_{n-1} + \frac{x}{2^n}\, u_n, \qquad L = x \sum_{n=1}^{\infty} \frac{u_n}{2^n}.$$
+            </p>
+            <p>反之，任意单位向量序列 $\{u_n\}$ 均可翻译回一条圆链（令 $P_n = C_{n-1} + r_{n-1} u_n$ 即可）。于是原问题化为：</p>
+            <p style="text-align: center; font-size: 1.1em; margin: 15px 0;">
+                <strong>集合 $\left\{ \sum_{n=1}^{\infty} \dfrac{u_n}{2^n} : u_n \in S^1 \right\}$ 到底有多大？</strong>
+            </p>
+            <p>其中 $S^1$ 为单位圆周。换言之，圆链极限点全体 = 单位向量"凸级数"的像集。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">3. 主定理与两种证明</h2>
+            <p><strong>定理 1（极限点覆盖定理）：</strong></p>
+            <p style="text-align: center; font-size: 1.1em; margin: 15px 0;">
+                $$\left\{ \sum_{n=1}^{\infty} \frac{u_n}{2^n} : u_n \in S^1 \right\} = \overline{D},$$
+            </p>
+            <p>其中 $\overline{D}$ 为闭单位圆盘。因此圆链极限点恰可取遍整个闭圆盘 $\overline{O_0}$——圆周、内部、圆心，一个不落。</p>
+
+            <h3 style="font-family: Georgia, serif;">证明 A（凸级数，优雅版）</h3>
+            <p>权重 $\{2^{-n}\}$ 之和恰为 $1$，故 $L/x$ 是单位圆周上点的"凸级数"（convex series）。显然有 $\left|L\right|/x \le \sum 2^{-n} = 1$，故像集含于闭单位圆盘。反向：单位圆盘的闭凸包即其自身，而任一点 $z \in \overline{D}$ 可写成圆周点的凸组合 $z = \sum_i \alpha_i v_i$；将每个系数 $\alpha_i$ 作二进制展开 $\alpha_i = \sum_{k} 2^{-n_k}$，把 $v_i$ 安放在对应编号的方向槽位上，即得 $z = \sum_n u_n / 2^n$。由紧性可知像集为闭集，故像集 = 闭单位圆盘。∎</p>
+
+            <h3 style="font-family: Georgia, serif;">证明 B（贪心归纳，操作版）</h3>
+            <p>任给目标 $z$，$|z| \le 1$。取 $c_0 = 0$；第 $n$ 步：若 $c_{n-1} = z$ 则任取方向，否则令 $u_n = \dfrac{z - c_{n-1}}{|z - c_{n-1}|}$（指向目标），并令 $c_n = c_{n-1} + u_n / 2^n$。归纳断言：</p>
+            <p style="text-align: center; font-size: 1.15em; margin: 15px 0;">$$|z - c_n| \le \frac{1}{2^n}.$$</p>
+            <p>$n = 0$ 时 $|z| \le 1$ 成立；若 $c_{n-1} = z$，则 $|z - c_n| = 1/2^n$ 成立；否则三点共线且方向朝 $z$，故</p>
+            <p style="text-align: center; font-size: 1.15em; margin: 15px 0;">$$|z - c_n| = \left|\, |z - c_{n-1}| - \frac{1}{2^n} \,\right| \le \frac{1}{2^n},$$</p>
+            <p>其中末不等式由 $0 \le |z - c_{n-1}| \le 1/2^{n-1} = 2/2^n$ 保证。故 $c_n \to z$，翻译回圆链即得 $L = xz$。∎</p>
+            <p>至此，原问题的答案是：<strong>能。圆 $O_0$ 上（及内部）任意一点都可以被无穷圆链表示出来。</strong></p>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../../images/greedy_target.svg" alt="贪心追踪示意图" onerror="this.style.display='none'" style="max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">图2：贪心追踪示意（目标点 $Z$，折线 $c_0 \to c_1 \to c_2 \to c_3$ 每步指向 $Z$，误差按 $1/2^n$ 收敛）</p>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">4. 唯一性与"方向二进制展开"</h2>
+            <h3 style="font-family: Georgia, serif;">4.1 圆周上的点：唯一表示</h3>
+            <p>若 $|L| = x$，则三角不等式 $\sum |u_n|/2^n \ge |L|/x = 1 = \sum 1/2^n$ 取等号，故每个 $u_n$ 必须同向。边界点恰有一条链（当然，全部方向一致）。</p>
+            <h3 style="font-family: Georgia, serif;">4.2 圆心：不是"洞"，能精确到达</h3>
+            <p>取 $u_1 = (1,0)$，$u_n = (-1,0)\ (n \ge 2)$，则</p>
+            <p style="text-align: center; font-size: 1.15em; margin: 15px 0;">$$\frac{L}{x} = \frac{1}{2} - \frac{1}{4} - \left(\frac{1}{8} + \frac{1}{16} + \cdots\right) = \frac{1}{2} - \frac{1}{4} - \frac{1}{4} = 0.$$</p>
+            <p>所以圆心也能被"点"到——第一步先往右走半格，第二步掉头，此后一路向左，恰好停在原点。直觉上最像"洞"的点，反而有无数种表示（前若干步可任意摆动，只要末段把残差精确归零）。</p>
+            <h3 style="font-family: Georgia, serif;">4.3 二进制类比</h3>
+            <p>权重 $2^{-n}$ 恰好对应二进制小数的第 $n$ 位：十进制里"每一位选 0 或 1"，这里"每一层选一个方向"。圆链即点的<strong>二维二进制展开</strong>，映射（方向序列）$\to$（极限点）是连续满射，把无穷维选择压成一个平面点。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">5. 构造算法与实例</h2>
+            <p><strong>算法 1（贪心圆链）：</strong>给定目标 $Z \in \overline{O_0}$。初始 $C_0$ 为 $O_0$ 圆心；对 $n = 1, 2, \dots$：若 $C_{n-1} = Z$ 任取方向，否则取 $u_n$ 为 $Z - C_{n-1}$ 的方向；令 $P_n = C_{n-1} + (x/2^{n-1}) u_n$，以 $C_{n-1}P_n$ 为直径作 $O_n$。则第 $n$ 层后误差 $|Z - C_n| \le x/2^n$，极限即为 $Z$。</p>
+            <ul>
+                <li><strong>例 1（圆周点 $Z = (x, 0)$）：</strong>全部方向向右，$L = x(1/2 + 1/4 + \cdots) = x$。✓</li>
+                <li><strong>例 2（圆心 $Z = (0,0)$）：</strong>右、左、左、左……，$L/x = 1/2 - 1/4 - 1/8 - \cdots = 0$。✓</li>
+                <li><strong>例 3（中点 $Z = (x/2, 0)$）：</strong>右、左、右、右、右……，$L/x = 1/2 - 1/4 + (1/8 + 1/16 + \cdots) = 1/2$。✓</li>
+                <li><strong>例 4（一般内点）：</strong>按贪心方向走即可，前四层肉眼可见，后面的交给想象力。</li>
+            </ul>
+
+            <div style="text-align: center; margin: 20px 0;">
+                <img src="../../images/disk_cover.svg" alt="圆盘覆盖示意图" onerror="this.style.display='none'" style="max-width: 420px; width: 100%; border-radius: 8px; border: 1px solid var(--border);">
+                <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">图3：覆盖示意（同一圆盘内，圆周点、圆心、内部点各由一条不同颜色的圆链实现）</p>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">6. 临界性与推广（展望）</h2>
+            <ul>
+                <li><strong>三维推广：</strong>把"圆"换成"球"，凸级数论证原样照搬，结论不变——闭球内任意点皆可表示。</li>
+                <li><strong>临界半径比：</strong>若改为 $r_n = q\, r_{n-1}$（$q \in (0,1)$），则极限点最远可达 $x \cdot \frac{1/2}{1-q}$。圆链嵌套要求 $q \le 1/2$；$q \lt 1/2$ 时只能覆盖半径 $\frac{x}{2(1-q)} \lt x$ 的小圆盘，覆盖不了全盘；<strong>$q = 1/2$ 恰是"能点满整个圆盘"的临界比</strong>；$q \gt 1/2$ 时圆不嵌套，"最后一个圆"未必存在，涉嫌物理超速，不讨论。</li>
+                <li><strong>分形方向：</strong>若第 $n$ 步只允许有限个方向，极限集退化为 von Koch / Sierpiński 类自相似集，留待下一期（如果还有 Token）。</li>
+                <li><strong>工程应用：</strong>暂无。符合本刊定位。</li>
+            </ul>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">7. 结论</h2>
+            <p>用无穷个"半个半个"的圆，可以精确表示圆盘内任意一点——圆周点唯一表示，圆心与内点无限多种表示，贪心算法误差每层减半。本质上是两件事：单位向量凸级数的像集等于闭凸包，以及二进制展开的二维化。建议读者亲手画到第 4 层就放弃，剩下的交给想象力与圆规的寿命。</p>
+            <p style="margin-top: 15px; color: var(--text-muted); font-size: 14px;"><strong>致谢：</strong>感谢圆规没有在第三层罢工；感谢 $q = 1/2$ 这个临界值，让我们第一次觉得"二分之一"如此重要。</p>
+
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+</body>
+</html>

@@ -60,7 +60,7 @@ const articlesData = [
         title: "关于碳酸钙（CaCO₃）与三钴化钙（CaCo₃）在宇宙社会学与微观语言学层面之关联性初探（暨对化学符号大小写不敏感之批判）",
         url: "articles/common/关于碳酸钙与三钴化钙的关联性初探.html",
         author: "Dr.叶",
-        date: "2026-08-30",
+        date: "2026-09-05",
         type: "普通"
     },
     //上面是普通
@@ -146,7 +146,14 @@ const articlesData = [
         title: "湖心亭看雪（英语胡乱手译版）",
         url: "articles/handpicked/湖心亭看雪（英语胡乱手译版）.html",
         author: "XIV",
-        date: "2026-08-30",
+        date: "2026-09-05",
+        type: "精选"
+    },
+    {
+        title: "无穷直径圆链的极限点覆盖定理（暨“半个半个地画圆能否点满整个圆盘”之研究）",
+        url: "articles/handpicked/无穷直径圆链的极限点覆盖定理.html",
+        author: "Dr.叶",
+        date: "2026-09-05",
         type: "精选"
     }
     // 下面的三角函数文件你还没建，所以先注释掉。等以后写好了再解开
