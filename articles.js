@@ -63,6 +63,20 @@ const articlesData = [
         date: "2026-08-30",
         type: "普通"
     },
+    {
+        title: "探究斐林试剂与双缩脲试剂的奥秘",
+        url: "articles/common/探究斐林试剂与双缩脲试剂的奥秘.html",
+        author: "Apl_zh",
+        date: "2026-09-05",
+        type: "普通"
+    },
+    {
+        title: "荣成三中训练营“厕所微缩喀斯特地貌”生长研究报告",
+        url: "articles/common/荣成三中训练营厕所微缩喀斯特地貌生长研究报告.html",
+        author: "Apl_zh",
+        date: "2026-09-05",
+        type: "精选"
+    },
     //上面是普通
     //下面是精选
     {
