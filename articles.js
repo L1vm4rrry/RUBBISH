@@ -60,7 +60,7 @@ const articlesData = [
         title: "关于碳酸钙（CaCO₃）与三钴化钙（CaCo₃）在宇宙社会学与微观语言学层面之关联性初探（暨对化学符号大小写不敏感之批判）",
         url: "articles/common/关于碳酸钙与三钴化钙的关联性初探.html",
         author: "Dr.叶",
-        date: "2026-09-05",
+        date: "2026-08-30",
         type: "普通"
     },
     //上面是普通
@@ -146,7 +146,7 @@ const articlesData = [
         title: "湖心亭看雪（英语胡乱手译版）",
         url: "articles/handpicked/湖心亭看雪（英语胡乱手译版）.html",
         author: "XIV",
-        date: "2026-09-05",
+        date: "2026-08-30",
         type: "精选"
     },
     {
