@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="sans-serif">
+  <rect x="0" y="0" width="640" height="440" fill="#ffffff"/>
+  <text x="30" y="36" font-size="19" font-weight="bold" fill="#222">图3　一般情形：过 A(d, m) 的切线 g(x) = hx + i</text>
+
+  <!-- 坐标轴 -->
+  <line x1="80" y1="390" x2="600" y2="390" stroke="#222" stroke-width="2"/>
+  <line x1="120" y1="390" x2="120" y2="40" stroke="#222" stroke-width="2"/>
+  <polygon points="600,390 588,384 588,396" fill="#222"/>
+  <polygon points="120,40 114,52 126,52" fill="#222"/>
+  <text x="606" y="394" font-size="14" fill="#222">x</text>
+  <text x="110" y="44" font-size="14" fill="#222">y</text>
+  <text x="112" y="404" font-size="14" fill="#222">O</text>
+
+  <!-- 一般抛物线 f(x) = ax^2 + bx + c -->
+  <path d="M 120 150 C 180 240, 300 320, 400 320 C 460 320, 520 290, 590 220" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+  <text x="420" y="140" font-size="16" fill="#2e7d32">f(x) = ax² + bx + c</text>
+
+  <!-- 切线 g(x) = hx + i -->
+  <line x1="150" y1="120" x2="470" y2="392" stroke="#d32f2f" stroke-width="2.4"/>
+  <text x="490" y="200" font-size="16" fill="#b71c1c">g(x) = hx + i</text>
+
+  <!-- 切点 A -->
+  <circle cx="300" cy="280" r="6" fill="#e91e63"/>
+  <text x="300" y="266" font-size="16" font-weight="bold" fill="#e91e63">A(d, m)</text>
+
+  <text x="30" y="422" font-size="15" fill="#555">令 g(x)=f(x) 得 Δ=0 的一元二次方程；因 A 在抛物线上，可证切线斜率 h = 2ad + b（即导数值）。</text>
+</svg>

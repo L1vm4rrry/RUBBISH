@@ -77,6 +77,13 @@ const articlesData = [
         date: "2026-09-05",
         type: "精选"
     },
+    {
+        title: "一元二次函数切线斜率求解公式（两点定线 · 抛物线切线 · 一般性结论证明）",
+        url: "articles/common/一元二次函数切线斜率求解公式.html",
+        author: "PHI-GAMMA",
+        date: "2026-09-06",
+        type: "精选"
+    },
     //上面是普通
     //下面是精选
     {
@@ -223,5 +230,13 @@ const hgsAwards = [
         url: "articles/HGS/第一期第三篇_二次函数性质重构.html",
         author: "Dr.叶",
         summary: "开创性地提出“顶点判别式”，跳过了繁琐的展开运算，直接将二次函数与几何意义结合，展现了极高的数学直觉。"
+    },
+    // 新增第四篇
+    {
+        issue: "第一届",
+        title: "一元二次函数切线斜率求解公式",
+        url: "articles/common/一元二次函数切线斜率求解公式.html",
+        author: "PHI-GAMMA",
+        summary: "仅用判别式法与一元二次方程，就完整推导出“切线斜率 h = 2ad + b”，与微积分中的导数 f′(x) = 2ax + b 殊途同归。在还没学导数的高一阶段，硬是用初等方法“手搓”出了切线斜率，堪称代数功底与偷懒智慧的完美结合。"
     }
 ];

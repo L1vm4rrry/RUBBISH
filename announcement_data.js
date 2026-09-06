@@ -1,12 +1,13 @@
 // 全站唯一公告数据库（以后改公告，只改这里！）
 const announcementSummary = `
-    <p><strong>最新刊登：</strong>《荣成三中训练营“厕所微缩喀斯特地貌”生长研究报告》—— Apl_zh（升精选！）</p>
+    <p><strong>最新刊登：</strong>《一元二次函数切线斜率求解公式》—— PHI-GAMMA（精选 · 第一届HGS奖！）</p>
 `;
 
 const announcementFullText = `
-    <h2>📢 最新更新公告 9.5 20:45</h2>
+    <h2>📢 最新更新公告 9.6 09:18</h2>
     <p><strong>新回收以下垃圾：</strong></p>
     <ul>
+        <li>《一元二次函数切线斜率求解公式（两点定线 · 抛物线切线 · 一般性结论证明）》 —— PHI-GAMMA（<strong>精选 · 第一届HGS奖</strong>！）</li>
         <li>《荣成三中训练营“厕所微缩喀斯特地貌”生长研究报告》 —— Apl_zh（<strong>升精选</strong>！荣登首页精选板块）</li>
         <li>《探究斐林试剂与双缩脲试剂的奥秘》 —— Apl_zh（普通）</li>
         <li>《无穷直径圆链的极限点覆盖定理（暨"半个半个地画圆能否点满整个圆盘"之研究）》 —— Dr.叶（精选）</li>
