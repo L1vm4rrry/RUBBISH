@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 520" font-family="sans-serif">
+  <rect x="0" y="0" width="640" height="520" fill="#ffffff"/>
+  <text x="30" y="28" font-size="18" font-weight="bold" fill="#222">图表2：积分卡制度设计的"四大失守"对比</text>
+
+  <!-- 中心 -->
+  <circle cx="320" cy="240" r="2.5" fill="#999"/>
+
+  <!-- 同心菱形环（20/40/60/80/100） -->
+  <g fill="none" stroke="#ddd" stroke-width="1">
+    <polygon points="320,208 352,240 320,272 288,240"/>
+    <polygon points="320,176 384,240 320,304 256,240"/>
+    <polygon points="320,144 416,240 320,336 224,240"/>
+    <polygon points="320,112 448,240 320,368 192,240"/>
+    <polygon points="320,80 480,240 320,400 160,240"/>
+  </g>
+
+  <!-- 轴线 -->
+  <g stroke="#bbb" stroke-width="1">
+    <line x1="320" y1="240" x2="320" y2="80"/>
+    <line x1="320" y1="240" x2="480" y2="240"/>
+    <line x1="320" y1="240" x2="320" y2="400"/>
+    <line x1="320" y1="240" x2="160" y2="240"/>
+  </g>
+
+  <!-- 轴标签 -->
+  <g font-size="14" fill="#222" text-anchor="middle">
+    <text x="320" y="64">兑付信用（兑付端）</text>
+    <text x="490" y="236" text-anchor="start">发行约束（发行端）</text>
+    <text x="320" y="424">价格信号（价格端）</text>
+    <text x="150" y="236" text-anchor="end">回收机制（回收端）</text>
+  </g>
+
+  <!-- 理想状态（蓝，全部 90 → r=144） -->
+  <polygon points="320,96 464,240 320,384 176,240" fill="#cfe0f7" fill-opacity="0.45" stroke="#1565c0" stroke-width="2.2"/>
+  <g fill="#1565c0">
+    <circle cx="320" cy="96" r="4.5"/>
+    <circle cx="464" cy="240" r="4.5"/>
+    <circle cx="320" cy="384" r="4.5"/>
+    <circle cx="176" cy="240" r="4.5"/>
+  </g>
+  <g font-size="12" fill="#1565c0" text-anchor="middle">
+    <text x="320" y="82">理想:90</text>
+    <text x="472" y="264" text-anchor="start">理想:90</text>
+    <text x="320" y="404">理想:90</text>
+    <text x="168" y="264" text-anchor="end">理想:90</text>
+  </g>
+
+  <!-- 实际现状（橙，15/20/25/10） -->
+  <polygon points="320,216 352,240 320,280 304,240" fill="#fde2c8" fill-opacity="0.6" stroke="#e65100" stroke-width="2.2"/>
+  <g fill="#e65100">
+    <circle cx="320" cy="216" r="4"/>
+    <circle cx="352" cy="240" r="4"/>
+    <circle cx="320" cy="280" r="4"/>
+    <circle cx="304" cy="240" r="4"/>
+  </g>
+  <g font-size="12" fill="#e65100" text-anchor="middle">
+    <text x="320" y="204">实际:15</text>
+    <text x="360" y="262" text-anchor="start">实际:20</text>
+    <text x="320" y="300">实际:25</text>
+    <text x="296" y="262" text-anchor="end">实际:10</text>
+  </g>
+
+  <!-- 图例 -->
+  <g font-size="13">
+    <line x1="470" y1="48" x2="510" y2="48" stroke="#1565c0" stroke-width="2.5"/>
+    <circle cx="490" cy="48" r="4" fill="#1565c0"/>
+    <text x="518" y="52" fill="#222">理想状态</text>
+
+    <line x1="470" y1="70" x2="510" y2="70" stroke="#e65100" stroke-width="2.5"/>
+    <circle cx="490" cy="70" r="4" fill="#e65100"/>
+    <text x="518" y="74" fill="#222">实际现状</text>
+  </g>
+
+  <text x="320" y="470" font-size="12" fill="#666" text-anchor="middle">环刻度：20 / 40 / 60 / 80 / 100；理想系统应接近饱满圆形，现实积分卡为极度干瘪的形状（全方位制度真空）</text>
+</svg>

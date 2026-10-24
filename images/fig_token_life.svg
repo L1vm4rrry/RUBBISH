@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="sans-serif">
+  <rect x="0" y="0" width="640" height="440" fill="#ffffff"/>
+  <text x="30" y="28" font-size="18" font-weight="bold" fill="#222">图表1：积分卡生命周期与信用崩溃曲线</text>
+
+  <!-- 网格 -->
+  <g stroke="#e5e5e5" stroke-width="1">
+    <line x1="70" y1="30" x2="600" y2="30"/>
+    <line x1="70" y1="78.6" x2="600" y2="78.6"/>
+    <line x1="70" y1="127.1" x2="600" y2="127.1"/>
+    <line x1="70" y1="175.7" x2="600" y2="175.7"/>
+    <line x1="70" y1="224.3" x2="600" y2="224.3"/>
+    <line x1="70" y1="272.9" x2="600" y2="272.9"/>
+    <line x1="70" y1="321.4" x2="600" y2="321.4"/>
+    <line x1="70" y1="370" x2="600" y2="370"/>
+  </g>
+
+  <!-- 坐标轴 -->
+  <line x1="70" y1="370" x2="600" y2="370" stroke="#222" stroke-width="1.5"/>
+  <line x1="70" y1="30" x2="70" y2="370" stroke="#222" stroke-width="1.5"/>
+  <line x1="600" y1="30" x2="600" y2="370" stroke="#222" stroke-width="1.5"/>
+
+  <!-- 左侧刻度数值 -->
+  <g font-size="12" fill="#666" text-anchor="end">
+    <text x="62" y="34">140</text>
+    <text x="62" y="83">120</text>
+    <text x="62" y="131">100</text>
+    <text x="62" y="180">80</text>
+    <text x="62" y="228">60</text>
+    <text x="62" y="277">40</text>
+    <text x="62" y="325">20</text>
+    <text x="62" y="374">0</text>
+  </g>
+  <!-- 右侧刻度数值 -->
+  <g font-size="12" fill="#666" text-anchor="start">
+    <text x="608" y="34">140</text>
+    <text x="608" y="83">120</text>
+    <text x="608" y="131">100</text>
+    <text x="608" y="180">80</text>
+    <text x="608" y="228">60</text>
+    <text x="608" y="277">40</text>
+    <text x="608" y="325">20</text>
+    <text x="608" y="374">0</text>
+  </g>
+
+  <!-- 轴标题 -->
+  <text x="20" y="200" font-size="13" fill="#222" transform="rotate(-90 20 200)">数值（0-100）</text>
+  <text x="632" y="200" font-size="13" fill="#222" transform="rotate(90 632 200)">教师发行量（累积积分）</text>
+
+  <!-- X 轴标签 -->
+  <g font-size="13" fill="#222" text-anchor="middle">
+    <text x="70" y="392">第1天</text>
+    <text x="202.5" y="392">第3天</text>
+    <text x="335" y="392">第7天</text>
+    <text x="467.5" y="392">第10天</text>
+    <text x="600" y="392">第14天</text>
+  </g>
+  <text x="335" y="418" font-size="13" fill="#222" text-anchor="middle">时间（天）</text>
+
+  <!-- 折线：学生参与热情（蓝） -->
+  <polyline points="70,151.4 202.5,139.3 335,175.7 467.5,272.9 600,345.7" fill="none" stroke="#1565c0" stroke-width="2.5"/>
+  <g fill="#1565c0">
+    <circle cx="70" cy="151.4" r="4"/><circle cx="202.5" cy="139.3" r="4"/><circle cx="335" cy="175.7" r="4"/><circle cx="467.5" cy="272.9" r="4"/><circle cx="600" cy="345.7" r="4"/>
+  </g>
+
+  <!-- 折线：积分实际购买力（橙） -->
+  <polyline points="70,127.1 202.5,139.3 335,224.3 467.5,297.1 600,345.7" fill="none" stroke="#e65100" stroke-width="2.5"/>
+  <g fill="#e65100">
+    <circle cx="70" cy="127.1" r="4"/><circle cx="202.5" cy="139.3" r="4"/><circle cx="335" cy="224.3" r="4"/><circle cx="467.5" cy="297.1" r="4"/><circle cx="600" cy="345.7" r="4"/>
+  </g>
+
+  <!-- 折线：教师发行量（绿） -->
+  <polyline points="70,345.7 202.5,309.3 335,248.6 467.5,175.7 600,78.6" fill="none" stroke="#2e7d32" stroke-width="2.5"/>
+  <g fill="#2e7d32">
+    <circle cx="70" cy="345.7" r="4"/><circle cx="202.5" cy="309.3" r="4"/><circle cx="335" cy="248.6" r="4"/><circle cx="467.5" cy="175.7" r="4"/><circle cx="600" cy="78.6" r="4"/>
+  </g>
+
+  <!-- 数据点标注 -->
+  <g font-size="12" fill="#555" text-anchor="middle">
+    <text x="82" y="166">90</text>
+    <text x="212" y="137">95</text>
+    <text x="345" y="188">80</text>
+    <text x="477" y="285">40</text>
+    <text x="600" y="331">10</text>
+
+    <text x="70" y="118">100</text>
+    <text x="212" y="155">95</text>
+    <text x="345" y="241">60</text>
+    <text x="477" y="313">30</text>
+    <text x="610" y="355">10</text>
+
+    <text x="82" y="335">10</text>
+    <text x="212" y="299">25</text>
+    <text x="345" y="239">50</text>
+    <text x="477" y="166">80</text>
+    <text x="590" y="70">120</text>
+  </g>
+
+  <!-- 图例 -->
+  <g font-size="13">
+    <line x1="430" y1="48" x2="470" y2="48" stroke="#1565c0" stroke-width="2.5"/>
+    <circle cx="450" cy="48" r="4" fill="#1565c0"/>
+    <text x="478" y="52" fill="#222">学生参与热情</text>
+
+    <line x1="430" y1="70" x2="470" y2="70" stroke="#e65100" stroke-width="2.5"/>
+    <circle cx="450" cy="70" r="4" fill="#e65100"/>
+    <text x="478" y="74" fill="#222">积分实际购买力</text>
+
+    <line x1="430" y1="92" x2="470" y2="92" stroke="#2e7d32" stroke-width="2.5"/>
+    <circle cx="450" cy="92" r="4" fill="#2e7d32"/>
+    <text x="478" y="96" fill="#222">教师发行量（累积）</text>
+  </g>
+</svg>

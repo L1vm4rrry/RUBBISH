@@ -4,7 +4,7 @@
 const authorsData = [
     // 主策划组
     { name: "叶令弦", institution: "三中实验部 (No.3 AS)", role: "主策划", count: 9 },
-    { name: "Apl_zh", institution: "三中实验部 (No.3 AS)", role: "副策划", count: 5 },
+    { name: "Apl_zh", institution: "三中实验部 (No.3 AS)", role: "副策划", count: 6 },
     { name: "叶令弦 & Apl_zh", institution: "三中实验部 (No.3 AS)", role: "联合研究", count: 1 },
 
     // 外部研究员

@@ -91,6 +91,13 @@ const articlesData = [
         date: "2026-10-24",
         type: "普通"
     },
+    {
+        title: "学校奖励积分卡的货币性崩溃：一个制度设计失败的分析",
+        url: "articles/common/学校奖励积分卡的货币性崩溃.html",
+        author: "Apl_zh",
+        date: "2026-10-24",
+        type: "普通"
+    },
     //上面是普通
     //下面是精选
     {
