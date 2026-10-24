@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 首页</title>
+    <script src="theme.js?v=20260830"></script>
+    <link rel="stylesheet" href="style.css?v=20260830d">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script>
+    MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 首页</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                    <li><a href="hgs.html" style="color: #D4AF37; font-weight: bold;">HGS奖</a></li>
+                </ul>
+                <div class="search-wrapper">
+                    <input type="text" id="search-input-home" placeholder="搜索学术垃圾..." class="search-input">
+                    <button class="search-btn" onclick="doHomeSearch()">搜索</button>
+                    <button id="theme-toggle" class="theme-btn">🌙</button>
+                </div>
+            </nav>
+        </header>
+
+        <main class="content">
+            <!-- 首页第一板块·更新公告摘要（只改announcement_data.js就能自动更新！） -->
+            <div class="post announcement-box">
+                <h2>📢 更新公告</h2>
+                <div id="home-announcement-summary"></div>
+                <a href="announcement.html" style="font-weight: bold; text-decoration: underline; display: inline-block; margin-top: 10px;">点击查看完整更新公告 →</a>
+            </div>
+
+            <!-- 原代码内容继续往下走 -->
+            <div class="bin-header">
+                <h2 style="margin: 0;">首页精选 / 最新动态</h2>
+                <p style="color: #555; margin-top: 10px;">这里只展示从 <strong>articles/handpicked</strong> 中精选的优质学术垃圾。</p>
+            </div>
+            <div id="home-list"></div>
+
+            <!-- 首页第二板块·最新普通垃圾（同样从 articles.js 自动读取） -->
+            <div class="bin-header" style="margin-top: 40px;">
+                <h2 style="margin: 0;">最新回收的普通垃圾</h2>
+                <p style="color: #555; margin-top: 10px;">这里展示最近回收的 <strong>普通</strong> 学术垃圾，完整档案请到<a href="explore.html">探索页</a>查看。</p>
+            </div>
+            <div id="recent-list"></div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <!-- 首次访问欢迎公告弹窗 -->
+    <div id="announcement-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>欢迎来到 RUBBISH 垃圾站！</h2>
+            <div style="font-size: 15px; line-height: 1.8; color: #555;">
+                <p><strong>宇宙安全声明：</strong>本站纯属虚构，所有“学术理论”仅供娱乐，请勿在现实中进行任何危险实验（比如把红墨水当酸碱指示剂，或者试图用C还原CO₂）。</p>
+                <p style="margin-top: 10px;"><strong>投稿提醒：</strong>本垃圾站欢迎各种优质垃圾，但绝不允许宣传黄赌毒贷、暴力血腥、反国言论等违法行为。一经发现，直接送入黑洞（并封号）。</p>
+                <p><strong>不退出代表同意所有协议，详情见公告哦！</strong>
+            </div>
+            <button class="modal-close-btn" onclick="closeModal()">知道了！</button>
+        </div>
+    </div>
+
+    <!-- 顶部彩蛋代码 -->
+    <div id="home-toast" class="toast">这已经是首页了呢pwp</div>
+
+    <!-- 加载文章数据 -->
+    <script src="articles.js?v=20260830k"></script>
+    <script>
+        // 1. 渲染首页精选（数据来源：articles.js，type === "精选"）
+        const homeList = document.getElementById('home-list');
+        articlesData.filter(article => article.type === "精选").forEach(article => {
+            homeList.innerHTML += `
+                <div class="post">
+                    <h2><a href="${article.url}">${article.title}</a></h2>
+                    <p><strong>作者：</strong>${article.author} | <strong>发布时间：</strong>${article.date}</p>
+                    <a href="${article.url}">阅读全文 →</a>
+                </div>
+            `;
+        });
+
+        // 2. 首页搜索跳转逻辑
+        function doHomeSearch() {
+            const query = document.getElementById('search-input-home').value.trim();
+            window.location.href = 'explore.html?q=' + encodeURIComponent(query);
+        }
+        // 在搜索框里按回车也能搜索
+        document.getElementById('search-input-home').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') doHomeSearch();
+        });
+
+        // 3. 彩蛋逻辑
+        const homeBtn = document.querySelector('.nav-home');
+        let toastTimer = null;
+        if (homeBtn) {
+            homeBtn.addEventListener('click', function(event) {
+                event.preventDefault();
+                const toast = document.getElementById('home-toast');
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                    toastTimer = null;
+                }, 2000);
+            });
+        }
+
+        // 4. 弹窗逻辑
+        window.onload = function() {
+            if (!sessionStorage.getItem('announcement_shown')) {
+                document.getElementById('announcement-modal').style.display = 'flex';
+                sessionStorage.setItem('announcement_shown', 'true');
+            }
+        };
+
+        // 5. 夜间模式切换逻辑
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        if (currentTheme === 'dark') {
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
+        });
+        function closeModal() {
+            document.getElementById('announcement-modal').style.display = 'none';
+        }
+    </script>
+    <script src="announcement_data.js?v=20260830o"></script>
+    <script>
+        // 渲染首页公告摘要
+        document.getElementById('home-announcement-summary').innerHTML = announcementSummary;
+    </script>
+    <script>
+        // 渲染"最新回收的普通垃圾"：取最近的 5 篇普通文章
+        const recentList = document.getElementById('recent-list');
+        if (recentList) {
+            const recent = articlesData
+                .filter(article => article.type === "普通")
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5);
+            if (recent.length === 0) {
+                recentList.innerHTML = '<div style="text-align: center; padding: 20px; color: #888;">暂时还没有普通垃圾，欢迎投稿！</div>';
+            } else {
+                recent.forEach(article => {
+                    recentList.innerHTML += `
+                        <div class="bin-item">
+                            <div class="bin-title"><a href="${article.url}" style="text-decoration: none;">${article.title}</a></div>
+                            <div class="bin-meta">
+                                <span class="date">作者：${article.author} | 发布时间：${article.date}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+        }
+    </script>
+    
+</body>
+</html>

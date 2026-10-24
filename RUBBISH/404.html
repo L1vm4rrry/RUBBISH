@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 404 垃圾不见了</title>
+    <!--
+        404 页必须扛得住"任意深度"的错误链接：
+        GitHub Pages 会把 404.html 原样返回给所有不存在的路径，
+        此时相对路径（style.css / theme.js 等）会相对于"错误路径"解析而全部失效，页面就变成没样式的裸页面。
+        解决：在加载资源前用 <base> 把路径固定到站点根。
+        如果以后部署到自定义域名 / 用户站（URL 里没有 /RUBBISH/），把下面的 '/RUBBISH/' 改成 '/' 即可。
+    -->
+    <script>
+        (function () {
+            if (location.protocol === 'file:') return; // 本地直接打开时保持相对路径，正常预览
+            var base = document.createElement('base');
+            base.href = '/RUBBISH/';
+            document.head.appendChild(base);
+        })();
+    </script>
+    <script src="theme.js?v=20260830"></script>
+    <link rel="stylesheet" href="style.css?v=20260830d">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 404</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <div class="post" style="text-align: center; padding: 60px 20px;">
+                <h2 style="font-size: 56px; margin: 0 0 10px 0;">404</h2>
+                <p style="font-size: 20px; font-weight: bold;">你找的那份垃圾可能已经被回收了 QWQ</p>
+                <p style="color: #888; margin-top: 15px;">
+                    该页面不存在，或已被黑洞吞没。<br>
+                    （未经审核的垃圾会被直接送入黑洞，这是本站的既定流程）
+                </p>
+                <div style="margin-top: 30px;">
+                    <a href="index.html" class="hgs-read-btn">回首页翻垃圾 →</a>
+                    <a href="explore.html" class="hgs-read-btn" style="background-color: #555; margin-left: 10px;">去探索档案库</a>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 440" font-family="sans-serif">
+  <rect x="0" y="0" width="640" height="440" fill="#ffffff"/>
+  <text x="30" y="38" font-size="19" font-weight="bold" fill="#222">图3　覆盖示意：同一圆盘内不同目标点，各由一条圆链实现</text>
+
+  <!-- 圆盘 -->
+  <circle cx="320" cy="225" r="150" fill="none" stroke="#222" stroke-width="2.5"/>
+  <text x="475" y="130" font-size="15" fill="#222">圆 O₀</text>
+
+  <defs>
+    <marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#d32f2f"/></marker>
+    <marker id="ab" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1565c0"/></marker>
+    <marker id="ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2e7d32"/></marker>
+  </defs>
+
+  <!-- 红色链：走向圆周最右点 Z1（唯一表示） -->
+  <line x1="320" y1="221" x2="395" y2="221" stroke="#d32f2f" stroke-width="2.2" marker-end="url(#ar)"/>
+  <line x1="395" y1="221" x2="432.5" y2="221" stroke="#d32f2f" stroke-width="2.2" marker-end="url(#ar)"/>
+  <line x1="432.5" y1="221" x2="451.25" y2="221" stroke="#d32f2f" stroke-width="2.2" marker-end="url(#ar)"/>
+  <circle cx="320" cy="221" r="5" fill="#222"/>
+  <circle cx="470" cy="221" r="7" fill="#e91e63"/>
+  <text x="415" y="200" font-size="14" fill="#d32f2f">Z₁：圆周点（唯一表示）</text>
+
+  <!-- 蓝色链：走向圆心 Z2（右一步后一路向左） -->
+  <line x1="320" y1="232" x2="395" y2="232" stroke="#1565c0" stroke-width="2.2" marker-end="url(#ab)"/>
+  <line x1="395" y1="232" x2="357.5" y2="232" stroke="#1565c0" stroke-width="2.2" marker-end="url(#ab)"/>
+  <line x1="357.5" y1="232" x2="338.75" y2="232" stroke="#1565c0" stroke-width="2.2" marker-end="url(#ab)"/>
+  <circle cx="320" cy="232" r="5" fill="#222"/>
+  <circle cx="320" cy="232" r="7" fill="#e91e63"/>
+  <text x="330" y="252" font-size="14" fill="#1565c0">Z₂：圆心（无穷多表示，先右再一路左：1/2 − 1/4 − 1/8 − … = 0）</text>
+
+  <!-- 绿色链：走向内部点 Z3（贪心） -->
+  <line x1="320" y1="225" x2="384.3" y2="186.4" stroke="#2e7d32" stroke-width="2.2" marker-end="url(#ag)"/>
+  <line x1="384.3" y1="186.4" x2="416.4" y2="167.1" stroke="#2e7d32" stroke-width="2.2" marker-end="url(#ag)"/>
+  <line x1="416.4" y1="167.1" x2="400.3" y2="176.7" stroke="#2e7d32" stroke-width="2.2" marker-end="url(#ag)"/>
+  <circle cx="320" cy="225" r="5" fill="#222"/>
+  <circle cx="395" cy="180" r="7" fill="#e91e63"/>
+  <text x="403" y="149" font-size="14" fill="#2e7d32">Z₃：内部点（无穷多表示，贪心逼近）</text>
+
+  <text x="30" y="415" font-size="15" fill="#555">任意目标点 Z 都能被一条「方向序列」点中——这就是二维二进制展开：每位选方向，无穷位可精确到圆盘内任何位置。</text>
+</svg>
