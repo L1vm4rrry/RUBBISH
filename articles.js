@@ -3,7 +3,7 @@ const articlesData = [
     {
         title: "超导发电机无限能源理论",
         url: "articles/common/超导发电机无限能源理论.html",
-        author: "Dr.叶 & Apl_zh",
+        author: "叶令弦 & Apl_zh",
         date: "2026-08-28",
         type: "普通"
     },
@@ -24,14 +24,14 @@ const articlesData = [
     {
         title: "第二届年度世界人形机器人运动会（神秘机翻版）",
         url: "articles/common/第二届世界人形机器人运动会（神秘机翻版）.html",
-        author: "Nature / Translate by Dr.叶",
+        author: "Nature / Translate by 叶令弦",
         date: "2026-08-28",
         type: "普通"
     },
     {
         title: "关于多索雷斯城墙增长速度函数的探究",
         url: "articles/common/关于多索雷斯城墙增长速度函数的探究.html",
-        author: "Dr.叶",
+        author: "叶令弦",
         date: "2026-08-28",
         type: "普通"
     },
@@ -52,14 +52,14 @@ const articlesData = [
     {
         title: "酸说",
         url: "articles/common/酸说.html",
-        author: "Dr.叶",
+        author: "叶令弦",
         date: "2026-08-29",
         type: "普通"
     },
     {
         title: "关于碳酸钙（CaCO₃）与三钴化钙（CaCo₃）在宇宙社会学与微观语言学层面之关联性初探（暨对化学符号大小写不敏感之批判）",
         url: "articles/common/关于碳酸钙与三钴化钙的关联性初探.html",
-        author: "Dr.叶",
+        author: "叶令弦",
         date: "2026-08-30",
         type: "普通"
     },
@@ -84,6 +84,13 @@ const articlesData = [
         date: "2026-09-06",
         type: "精选"
     },
+    {
+        title: "体育锻炼前后对大学生学习输入与输出效率的影响：一项基于自编数据的实证研究",
+        url: "articles/common/体育锻炼与学习效率实证研究.html",
+        author: "叶令弦",
+        date: "2026-10-24",
+        type: "普通"
+    },
     //上面是普通
     //下面是精选
     {
@@ -96,35 +103,35 @@ const articlesData = [
     {
         title: "关于红墨水酸碱性研究的量子叠加态报道",
         url: "articles/handpicked/红墨水酸碱性研究.html",
-        author: "Dr.叶 (No.3 AS 总策划)",
+        author: "叶令弦 (No.3 AS 总策划)",
         date: "2026-08-28",
         type: "精选"
     },
     {
         title: "碳还原二氧化碳的等效变换原理及其治理全球变暖的终极方案",
         url: "articles/handpicked/碳还原二氧化碳的等效变换原理.html",
-        author: "Dr.叶 (No.3 AS 总策划)",
+        author: "叶令弦 (No.3 AS 总策划)",
         date: "2026-08-28",
         type: "精选"
     },
     {
         title: "三角函数倍角公式的绝妙几何证明",
         url: "articles/handpicked/三角函数倍角公式的绝妙几何证明.html", // 路径改成了handpicked
-        author: "Dr.叶 (No.3 AS 总策划)",
+        author: "叶令弦 (No.3 AS 总策划)",
         date: "2026-08-28",
         type: "精选" // 改成精选
     },
     {
         title: "三角函数倍角公式的绝妙几何证明Pt.2",
         url: "articles/handpicked/关于一个没什么用的定理的推导.html", // 路径改成了handpicked
-        author: "XIV(主要证明) & Dr.叶 (No.3 AS 总策划)(次要验证)",
+        author: "XIV(主要证明) & 叶令弦 (No.3 AS 总策划)(次要验证)",
         date: "2026-08-28",
         type: "精选" // 改成精选
     },
     {
         title: "二次函数性质重构",
         url: "articles/handpicked/二次函数性质重构.html",
-        author: "Dr.叶 (No.3 AS 总策划)",
+        author: "叶令弦 (No.3 AS 总策划)",
         date: "2026-08-28",
         type: "精选"
     },
@@ -173,7 +180,7 @@ const articlesData = [
     {
         title: "无穷直径圆链的极限点覆盖定理（暨“半个半个地画圆能否点满整个圆盘”之研究）",
         url: "articles/handpicked/无穷直径圆链的极限点覆盖定理.html",
-        author: "Dr.叶",
+        author: "叶令弦",
         date: "2026-09-05",
         type: "精选"
     }
@@ -182,7 +189,7 @@ const articlesData = [
     {
         title: "三角函数倍角公式的绝妙几何证明",
         url: "articles/三角函数倍角公式的绝妙几何证明.html",
-        author: ""author": "Dr.叶 (No.3 AS 总策划)"",
+        author: ""author": "叶令弦 (No.3 AS 总策划)"",
         date: "2026-08-28",
         type: "普通"
     }
@@ -213,14 +220,14 @@ const hgsAwards = [
         issue: "第一届",
         title: "三角函数倍角公式的绝妙几何证明",
         url: "articles/HGS/第一期_三角函数倍角公式的绝妙几何证明.html",
-        author: "Dr.叶",
+        author: "叶令弦",
         summary: "本证明采用纯欧几里得几何风格，通过无中生有地在内部构造“等腰三角形”，利用底角相等、外角定理与勾股定理三步推导，绝妙地导出了二倍角公式。展现了初中几何的看家本领，被评委会评为第一届HGS最高荣誉。"
     },
     {
         issue: "第一届",
         title: "关于一个没什么用的定理的推导",
         url: "articles/HGS/第一期第二篇_关于一个没什么用的定理的推导.html",
-        author: "XIV(主要证明) & Dr.叶 (No.3 AS 总策划)(次要验证)",
+        author: "XIV(主要证明) & 叶令弦 (No.3 AS 总策划)(次要验证)",
         summary: "本证明由XIV提出新颖的内部构造视角，并辅助以“瞪眼法”进行严密推导。将枯燥的代数恒等式转化为优美的几何外角关系，体现了初中生最后的倔强与极高的捣乱水平。"
     },
     // 新增第三篇
@@ -228,7 +235,7 @@ const hgsAwards = [
         issue: "第一届",
         title: "二次函数性质重构",
         url: "articles/HGS/第一期第三篇_二次函数性质重构.html",
-        author: "Dr.叶",
+        author: "叶令弦",
         summary: "开创性地提出“顶点判别式”，跳过了繁琐的展开运算，直接将二次函数与几何意义结合，展现了极高的数学直觉。"
     },
     // 新增第四篇
