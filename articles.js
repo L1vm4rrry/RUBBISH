@@ -96,7 +96,7 @@ const articlesData = [
         url: "articles/common/学校奖励积分卡的货币性崩溃.html",
         author: "Apl_zh",
         date: "2026-10-24",
-        type: "普通"
+        type: "精选"
     },
     //上面是普通
     //下面是精选
