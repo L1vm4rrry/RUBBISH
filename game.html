@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUBBISH - 小游戏</title>
+    <script src="theme.js?v=20260830b"></script>
+    <link rel="stylesheet" href="style.css?v=20260830e">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <style>
+        /* ---------- 游戏大厅 ---------- */
+        .game-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .game-tab {
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .game-tab:hover { background: var(--bg-body); }
+        .game-tab.active { background: var(--text-main); color: var(--bg-body); border-color: var(--text-main); }
+        .game-section { display: none; }
+        .game-section.active { display: block; }
+        .game-stage { text-align: center; padding: 24px 20px; }
+        .game-stat { font-family: Georgia, serif; font-size: 26px; margin: 8px 0; color: var(--text-main); }
+        .game-sub { font-size: 14px; color: var(--text-muted); min-height: 20px; }
+        .game-hint { color: var(--text-muted); font-size: 13px; margin-top: 8px; }
+        .game-btn {
+            padding: 8px 22px;
+            border: 1px solid var(--text-main);
+            background: var(--bg-card);
+            color: var(--text-main);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .game-btn:hover { background: var(--bg-body); }
+
+        /* ---------- 戳戳乐 ---------- */
+        #trash-btn {
+            font-size: 72px;
+            line-height: 1;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s ease;
+        }
+        #trash-btn:active { transform: scale(0.85); }
+        #trash-btn.pop { animation: game-pop 0.25s ease; }
+        @keyframes game-pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.25) rotate(8deg); }
+            100% { transform: scale(1); }
+        }
+        #click-score { font-family: Georgia, serif; font-size: 30px; margin: 12px 0 6px; color: var(--text-main); }
+        #click-combo { font-size: 14px; color: var(--toast-text); font-weight: bold; min-height: 20px; }
+
+        /* ---------- 打地鼠 ---------- */
+        .whack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 330px;
+            margin: 16px auto;
+        }
+        .whack-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+        .whack-cell.mole { background: var(--bg-card); }
+        .whack-cell.mole:active { transform: scale(0.94); }
+
+        /* ---------- 2048 ---------- */
+        .grid2048 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            width: min(340px, 88vw);
+            margin: 16px auto;
+        }
+        .tile {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+            background: var(--bg-body);
+            border: 1px solid var(--border);
+        }
+        .tile.empty { color: transparent; }
+        .t2 { background: #eee; }
+        .t4 { background: #ede0c8; }
+        .t8 { background: #f2b179; color: #fff; }
+        .t16 { background: #f59563; color: #fff; }
+        .t32 { background: #f67c5f; color: #fff; }
+        .t64 { background: #f65e3b; color: #fff; }
+        .t128 { background: #edcf72; color: #fff; }
+        .t256 { background: #edcc61; color: #fff; }
+        .t512 { background: #edc850; color: #fff; }
+        .t1024 { background: #edc53f; color: #fff; }
+        .t2048 { background: #edc22e; color: #fff; font-size: 17px; }
+
+        .game-todo {
+            margin-top: 22px;
+            padding: 15px;
+            background: var(--toast-bg);
+            border: 1px solid var(--toast-border);
+            color: var(--toast-text);
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="site-header">
+            <div class="header-top">
+                <h1 class="logo">RUBBISH<span class="page-subtitle"> - 小游戏</span></h1>
+                <p class="tagline">The Home For Academic Trash</p>
+            </div>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-home">← 返回首页</a></li>
+                    <li><a href="explore.html">探索</a></li>
+                    <li><a href="about.html">关于</a></li>
+                    <li><a href="publish.html">合作出版</a></li>
+                    <li><a href="subscribe.html">订阅</a></li>
+                    <li><a href="bin.html">投稿</a></li>
+                    <li><a href="hgs.html" style="color: #D4AF37; font-weight: bold;">HGS奖</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="content">
+            <div class="bin-header">
+                <h2 style="margin: 0;">🎮 小游戏大厅</h2>
+                <p style="color: #555; margin-top: 10px;">纯前端、无需联网、随时摸鱼。三款小游戏，开发中……</p>
+            </div>
+
+            <!-- 游戏切换 -->
+            <div class="game-tabs">
+                <button class="game-tab active" data-game="click">🗑️ 疯狂戳垃圾桶</button>
+                <button class="game-tab" data-game="whack">🔨 学术垃圾打地鼠</button>
+                <button class="game-tab" data-game="g2048">🧩 学术垃圾 2048</button>
+            </div>
+
+            <!-- 游戏一：戳戳乐 -->
+            <div class="game-section active" id="game-click">
+                <div class="post game-stage">
+                    <button id="trash-btn" title="戳我！">🗑️</button>
+                    <div id="click-score">0 分</div>
+                    <div id="click-combo"></div>
+                    <p class="game-hint">点一下垃圾桶得 1 分；快速连点会触发连击加成。</p>
+                    <button class="game-btn" id="click-reset">重新开始</button>
+                </div>
+            </div>
+
+            <!-- 游戏二：打地鼠 -->
+            <div class="game-section" id="game-whack">
+                <div class="post game-stage">
+                    <div class="game-stat" style="font-size: 20px;">
+                        得分：<span id="whack-score">0</span>　剩余时间：<span id="whack-time">30</span>s
+                    </div>
+                    <div class="whack-grid" id="whack-grid"></div>
+                    <div class="game-sub" id="whack-sub"></div>
+                    <p class="game-hint">点击出现的学术垃圾得分；点到 💣 炸弹扣 2 分。30 秒挑战！</p>
+                    <button class="game-btn" id="whack-start">开始游戏</button>
+                </div>
+            </div>
+
+            <!-- 游戏三：2048 -->
+            <div class="game-section" id="game-g2048">
+                <div class="post game-stage">
+                    <div class="game-stat" style="font-size: 20px;">
+                        分数：<span id="score2048">0</span>　最高：<span id="best2048">0</span>
+                    </div>
+                    <div class="grid2048" id="grid2048"></div>
+                    <div class="game-sub" id="sub2048"></div>
+                    <p class="game-hint">方向键 / WASD / 手机滑动来移动，相同数字合并；目标 2048。</p>
+                    <button class="game-btn" id="reset2048">重新开始</button>
+                </div>
+            </div>
+
+            <div class="game-todo">
+                <strong>🚧 后续开发计划：</strong><br>
+                1. 更多小游戏（消消乐、摸鱼模拟器、反应力测试）；<br>
+                2. 本地排行榜、成就系统；<br>
+                3. 音效与动画打磨。<br>
+                <span style="font-size: 13px;">（以上均为画饼，何时动工取决于策划的心情 pwp）</span>
+            </div>
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+
+    <script>
+        /* ================= 游戏切换 ================= */
+        const tabs = document.querySelectorAll('.game-tab');
+        const sections = document.querySelectorAll('.game-section');
+        let activeGame = 'click';
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.toggle('active', t === tab));
+                sections.forEach(s => s.classList.toggle('active', s.id === 'game-' + tab.dataset.game));
+                activeGame = tab.dataset.game;
+                if (activeGame === 'g2048' && !grid2048.length) newGame2048();
+            });
+        });
+
+        /* ================= 游戏一：疯狂戳垃圾桶 ================= */
+        let clickScore = 0;
+        let clickCombo = 0;
+        let clickLast = 0;
+        const trashBtn = document.getElementById('trash-btn');
+        const clickScoreEl = document.getElementById('click-score');
+        const clickComboEl = document.getElementById('click-combo');
+
+        trashBtn.addEventListener('click', () => {
+            const now = Date.now();
+            clickCombo = (now - clickLast < 500) ? clickCombo + 1 : 1;
+            clickLast = now;
+            clickScore += clickCombo;
+            clickScoreEl.textContent = clickScore + ' 分';
+            clickComboEl.textContent = clickCombo >= 2 ? '🔥 x' + clickCombo + ' 连击！' : '';
+            trashBtn.classList.remove('pop');
+            void trashBtn.offsetWidth;
+            trashBtn.classList.add('pop');
+        });
+        document.getElementById('click-reset').addEventListener('click', () => {
+            clickScore = 0;
+            clickCombo = 0;
+            clickScoreEl.textContent = '0 分';
+            clickComboEl.textContent = '';
+        });
+
+        /* ================= 游戏二：学术垃圾打地鼠 ================= */
+        const WHACK_EMOJI = ['📄', '🗑️', '📃', '📎', '🧻'];
+        const whackGrid = document.getElementById('whack-grid');
+        const whackScoreEl = document.getElementById('whack-score');
+        const whackTimeEl = document.getElementById('whack-time');
+        const whackSubEl = document.getElementById('whack-sub');
+        const whackStartBtn = document.getElementById('whack-start');
+        let whackCells = [];
+        let whackScore = 0;
+        let whackHits = 0;
+        let whackLeft = 30;
+        let whackTick = null;
+        let whackSpawn = null;
+        let whackRunning = false;
+
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'whack-cell';
+            cell.addEventListener('click', () => {
+                if (!whackRunning || !cell.classList.contains('mole')) return;
+                if (cell.dataset.bomb === '1') {
+                    whackScore -= 2;
+                } else {
+                    whackScore += 1;
+                    whackHits++;
+                }
+                cell.textContent = '';
+                cell.classList.remove('mole');
+                cell.dataset.bomb = '0';
+                whackScoreEl.textContent = whackScore;
+            });
+            whackGrid.appendChild(cell);
+            whackCells.push(cell);
+        }
+
+        function whackSpawnOne() {
+            whackCells.forEach(c => {
+                c.textContent = '';
+                c.classList.remove('mole');
+                c.dataset.bomb = '0';
+            });
+            const idx = Math.floor(Math.random() * 9);
+            const cell = whackCells[idx];
+            const isBomb = Math.random() < 0.15;
+            cell.textContent = isBomb ? '💣' : WHACK_EMOJI[Math.floor(Math.random() * WHACK_EMOJI.length)];
+            cell.dataset.bomb = isBomb ? '1' : '0';
+            cell.classList.add('mole');
+        }
+
+        function whackStop() {
+            whackRunning = false;
+            clearInterval(whackTick);
+            clearInterval(whackSpawn);
+            whackCells.forEach(c => { c.textContent = ''; c.classList.remove('mole'); c.dataset.bomb = '0'; });
+            whackStartBtn.textContent = '再来一局';
+            whackSubEl.textContent = '⏰ 时间到！最终得分 ' + whackScore + '（命中 ' + whackHits + ' 个垃圾）';
+        }
+
+        whackStartBtn.addEventListener('click', () => {
+            if (whackRunning) return;
+            whackRunning = true;
+            whackScore = 0;
+            whackHits = 0;
+            whackLeft = 30;
+            whackScoreEl.textContent = '0';
+            whackTimeEl.textContent = '30';
+            whackSubEl.textContent = '';
+            whackStartBtn.textContent = '游戏进行中…';
+            whackSpawnOne();
+            whackSpawn = setInterval(whackSpawnOne, 750);
+            whackTick = setInterval(() => {
+                whackLeft--;
+                whackTimeEl.textContent = whackLeft;
+                if (whackLeft <= 0) whackStop();
+            }, 1000);
+        });
+
+        /* ================= 游戏三：学术垃圾 2048 ================= */
+        const SIZE = 4;
+        let grid2048 = [];
+        let score2048 = 0;
+        let best2048 = parseInt(localStorage.getItem('rub_2048_best') || '0', 10);
+        let over2048 = false;
+        const gridEl = document.getElementById('grid2048');
+        const score2048El = document.getElementById('score2048');
+        const best2048El = document.getElementById('best2048');
+        const sub2048El = document.getElementById('sub2048');
+        best2048El.textContent = best2048;
+
+        function newGame2048() {
+            grid2048 = Array.from({ length: SIZE }, () => Array(SIZE).fill(0));
+            score2048 = 0;
+            over2048 = false;
+            sub2048El.textContent = '';
+            spawn2048();
+            spawn2048();
+            render2048();
+        }
+
+        function spawn2048() {
+            const empties = [];
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    if (grid2048[r][c] === 0) empties.push([r, c]);
+                }
+            }
+            if (!empties.length) return;
+            const [r, c] = empties[Math.floor(Math.random() * empties.length)];
+            grid2048[r][c] = Math.random() < 0.9 ? 2 : 4;
+        }
+
+        function render2048() {
+            gridEl.innerHTML = '';
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    const v = grid2048[r][c];
+                    const cell = document.createElement('div');
+                    cell.className = 'tile ' + (v ? 't' + Math.min(v, 2048) : 'empty');
+                    cell.textContent = v ? v : '';
+                    gridEl.appendChild(cell);
+                }
+            }
+            score2048El.textContent = score2048;
+            if (score2048 > best2048) {
+                best2048 = score2048;
+                localStorage.setItem('rub_2048_best', String(best2048));
+            }
+            best2048El.textContent = best2048;
+        }
+
+        function slideLine(line) {
+            const nums = line.filter(v => v !== 0);
+            const out = [];
+            let gained = 0;
+            for (let i = 0; i < nums.length; i++) {
+                if (i < nums.length - 1 && nums[i] === nums[i + 1]) {
+                    out.push(nums[i] * 2);
+                    gained += nums[i] * 2;
+                    i++;
+                } else {
+                    out.push(nums[i]);
+                }
+            }
+            while (out.length < SIZE) out.push(0);
+            return { line: out, gained: gained };
+        }
+
+        function move2048(dir) {
+            if (over2048) return;
+            const before = JSON.stringify(grid2048);
+            const lines = [];
+            for (let i = 0; i < SIZE; i++) {
+                const line = [];
+                for (let j = 0; j < SIZE; j++) {
+                    if (dir === 'left') line.push(grid2048[i][j]);
+                    else if (dir === 'right') line.push(grid2048[i][SIZE - 1 - j]);
+                    else if (dir === 'up') line.push(grid2048[j][i]);
+                    else line.push(grid2048[SIZE - 1 - j][i]);
+                }
+                lines.push(line);
+            }
+            let gained = 0;
+            const newLines = lines.map(l => {
+                const res = slideLine(l);
+                gained += res.gained;
+                return res.line;
+            });
+            for (let i = 0; i < SIZE; i++) {
+                for (let j = 0; j < SIZE; j++) {
+                    const v = newLines[i][j];
+                    if (dir === 'left') grid2048[i][j] = v;
+                    else if (dir === 'right') grid2048[i][SIZE - 1 - j] = v;
+                    else if (dir === 'up') grid2048[j][i] = v;
+                    else grid2048[SIZE - 1 - j][i] = v;
+                }
+            }
+            score2048 += gained;
+            if (JSON.stringify(grid2048) !== before) {
+                spawn2048();
+                render2048();
+                checkOver2048();
+            }
+        }
+
+        function checkOver2048() {
+            // 还有空格 → 没结束
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    if (grid2048[r][c] === 0) return;
+                }
+            }
+            // 无空格：检查相邻可合并
+            for (let r = 0; r < SIZE; r++) {
+                for (let c = 0; c < SIZE; c++) {
+                    const v = grid2048[r][c];
+                    if (c + 1 < SIZE && grid2048[r][c + 1] === v) return;
+                    if (r + 1 < SIZE && grid2048[r + 1][c] === v) return;
+                }
+            }
+            over2048 = true;
+            sub2048El.textContent = '💀 没有可移动的方块了，游戏结束！最终分数 ' + score2048;
+        }
+
+        document.getElementById('reset2048').addEventListener('click', newGame2048);
+
+        document.addEventListener('keydown', (e) => {
+            if (activeGame !== 'g2048') return;
+            const map = {
+                ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down',
+                a: 'left', d: 'right', w: 'up', s: 'down',
+                A: 'left', D: 'right', W: 'up', S: 'down'
+            };
+            const dir = map[e.key];
+            if (dir) {
+                e.preventDefault();
+                move2048(dir);
+            }
+        });
+
+        // 手机滑动
+        let touchStart = null;
+        gridEl.addEventListener('touchstart', (e) => {
+            touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        }, { passive: true });
+        gridEl.addEventListener('touchend', (e) => {
+            if (!touchStart) return;
+            const dx = e.changedTouches[0].clientX - touchStart.x;
+            const dy = e.changedTouches[0].clientY - touchStart.y;
+            if (Math.abs(dx) < 24 && Math.abs(dy) < 24) { touchStart = null; return; }
+            if (Math.abs(dx) > Math.abs(dy)) move2048(dx > 0 ? 'right' : 'left');
+            else move2048(dy > 0 ? 'down' : 'up');
+            touchStart = null;
+        }, { passive: true });
+
+        newGame2048();
+    </script>
+
+</body>
+</html>
