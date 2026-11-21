@@ -103,7 +103,7 @@ const articlesData = [
     {
         title: "量子级碳骨架重组与热力学逆熵合成理论",
         url: "articles/handpicked/量子级碳骨架重组与热力学逆熵合成理论.html",
-        author: "张子涵",
+        author: "赖自天",
         date: "2026-08-27",
         type: "精选"
     },
