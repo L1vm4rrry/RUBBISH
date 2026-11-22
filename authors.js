@@ -14,6 +14,7 @@ const authorsData = [
     { name: "XIV", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 2 },
     { name: "XIV & 叶令弦 合作探究", institution: "三中实验部 (No.3 AS)", role: "合作", count: 1 },
     { name: "赖自天", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 1 },
+    { name: "摸头你就受着", institution: "三中实验部 (No.3 AS)", role: "研究员", count: 1 },
     { name: "Espin von Linné", institution: "三中实验部 (No.3 AS)", role: "伟大的垃圾文章科学家", count: 3 },
     // 翻译/其他
     { name: "Nature / 叶令弦 翻译", institution: "其他机构", role: "翻译", count: 1 },

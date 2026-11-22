@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>粗糙水平地面上的长木板与带电小物块：一道物理题的详解与硬伤分析</title>
+    <!-- 因为文章在 articles/common 里，CSS路径要往上跳两级 -->
+    <script src="../../theme.js?v=20260830b"></script>
+    <link rel="stylesheet" href="../../style.css?v=20260830e">
+    <link rel="icon" type="image/png" href="../../images/favicon.png">
+</head>
+<body>
+    <div class="container">
+        <!-- 返回主导航 -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="../../index.html" class="nav-home">← 返回首页</a></li>
+                <li><a href="../../explore.html">探索</a></li>
+            </ul>
+        </nav>
+
+        <main class="content" style="margin-top: 30px;">
+            <div style="border-bottom: 2px solid var(--border); padding-bottom: 20px; margin-bottom: 30px;">
+                <h1 style="font-family: Georgia, serif; font-size: 28px; margin-bottom: 10px;">粗糙水平地面上的长木板与带电小物块：一道物理题的详解与"硬伤"分析</h1>
+                
+                <p style="font-size: 16px; font-weight: bold;">Researcher: 摸头你就受着</p>
+                <p style="font-size: 14px; color: var(--text-muted);">No.3 Middle School Science and Technology Innovation Academy (No.3 AS) · 研究员</p>
+                <p style="font-size: 14px; color: var(--text-muted);">（本文为Rubbish期刊普通类学术垃圾）</p>
+            </div>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">题目原文</h2>
+            <p>粗糙水平地面上静置长木板，木板长度 L=1.0 m，厚度 d=0.05 m。木板与地面间动摩擦因数 μ<sub>1</sub>=0.20；带电小物块和木板上表面间动摩擦因数 μ<sub>2</sub>=0.30。物块质量 m=0.4 kg，木板质量 M=0.8 kg。固定点电荷对物块有恒定水平向右吸引力 F=1.2 N（仅物块在木板上时受这个库仑力；一旦滑离木板，库仑力立刻消失）。t=0 给物块水平向左初速度 v<sub>0</sub>=4.0 m/s，物块与木板发生相对滑动，木板也相对地面滑动。重力加速度 g=10 m/s²。</p>
+            <p><strong>求：</strong></p>
+            <ol>
+                <li>物块在木板上滑动时，物块的加速度大小 a<sub>1</sub>、木板的加速度大小 a<sub>2</sub>；</li>
+                <li>经过多长时间物块从木板右端滑出；</li>
+                <li>物块滑出木板时的速度；</li>
+                <li>物块滑出后做平抛运动，求平抛的水平位移；</li>
+                <li>物块滑出之后，木板在地面继续减速到静止，求木板从物块滑出到停下的位移。</li>
+            </ol>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">一、已知量与符号约定</h2>
+            <p>L = 1.0 m，d = 0.05 m；μ<sub>1</sub> = 0.20（木板—地面），μ<sub>2</sub> = 0.30（物块—木板）；m = 0.4 kg，M = 0.8 kg；F = 1.2 N（向右，仅在板上时作用于物块）；v<sub>0</sub> = 4.0 m/s，方向水平向左；g = 10 m/s²。</p>
+            <p>约定：先以"向左"为正方向讨论；涉及方向时单独标明。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">二、关键摩擦力计算（受力分析基础）</h2>
+            <p><strong>1. 物块与木板之间的滑动摩擦力</strong></p>
+            <p style="text-align: center;">f<sub>2</sub> = μ<sub>2</sub>·m·g = 0.30 × 0.4 × 10 = 1.2 N</p>
+            <p><strong>2. 木板与地面之间的最大静摩擦（数值上等于按动摩擦估出的地面阻力）</strong></p>
+            <p style="text-align: center;">f<sub>1</sub> = μ<sub>1</sub>·(M + m)·g = 0.20 × (0.8 + 0.4) × 10 = 2.4 N</p>
+            <p>注意：物块在板上时，地面对木板的支持力为 (M+m)g，而非 Mg。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">三、第（1）问：加速度 a₁、a₂</h2>
+            <h3 style="font-family: Georgia, serif;">● 物块的加速度 a₁</h3>
+            <p>物块相对木板向左滑动，因此木板对物块的滑动摩擦力方向向右；库仑吸引力 F 也向右。两力同向，合力向右：</p>
+            <p style="text-align: center;">m·a<sub>1</sub> = F + f<sub>2</sub> = 1.2 + 1.2 = 2.4 N</p>
+            <p style="text-align: center;">a<sub>1</sub> = 2.4 / 0.4 = 6.0 m/s²</p>
+            <p>方向：水平向右（与物块初速度方向相反，物块做向左的匀减速）。</p>
+            <p><strong>▸ 物块加速度大小 a<sub>1</sub> = 6.0 m/s²。</strong></p>
+
+            <h3 style="font-family: Georgia, serif;">● 木板的加速度 a₂ —— 这里必须先判定木板到底动不动</h3>
+            <p>木板受到物块给的反作用力，大小 f<sub>2</sub>=1.2 N，方向向左；地面要阻碍木板向左运动，需提供向右的静摩擦。地面能给出的最大静摩擦为 f<sub>1max</sub> ≈ 2.4 N。</p>
+            <p>向左的驱动力 1.2 N &lt; 地面最大静摩擦 2.4 N ⟹ <strong>木板所受向左的力不足以克服地面摩擦，木板保持静止，并不相对地面滑动。</strong></p>
+            <p><strong>▸ 按真实物理规律：木板加速度 a<sub>2</sub> = 0。</strong></p>
+            <p>※ 题目文字称"木板也相对地面滑动"，并在第（5）问默认木板滑出前已经运动，这与上述数值判定相互矛盾（详见第五节"题目是否完美"）。若按出题人的本意、强行假设木板在地面上滑动，则常见列式为：</p>
+            <p style="text-align: center;">M·a<sub>2</sub> = f<sub>1</sub> − f<sub>2</sub> = 2.4 − 1.2 = 1.2 N（向右为正）</p>
+            <p style="text-align: center;">a<sub>2</sub> = 1.2 / 0.8 = 1.5 m/s²</p>
+            <p>即参考值 a<sub>2</sub> = 1.5 m/s²。但此假设在方向与初速度上并不自洽，仅供对照，不能视为严格成立的结论。</p>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">四、第（2）~（5）问 参考求解</h2>
+            <p>说明：本题数值存在硬伤（见第五节），下面分两套给出。<strong>A 套</strong>：按题目"木板滑动"的本意强行求解（应试参考算法）；<strong>B 套</strong>：按真实物理规律得到的判定与结论。</p>
+
+            <h3 style="font-family: Georgia, serif;">A 套：按题目设定（木板在地面上滑动）强行计算</h3>
+            <p>以向左为正方向：物块初速度 v<sub>0</sub> = +4.0 m/s，物块加速度 a<sub>1</sub> = −6.0 m/s²（向右）；木板初速度 0，加速度 a<sub>2</sub> = −1.5 m/s²（向右，参考值）。</p>
+            <p>相对初速度：v<sub>rel0</sub> = v<sub>0</sub> − 0 = 4.0 m/s（物块相对板向左）；相对加速度：a<sub>rel</sub> = a<sub>1</sub> − a<sub>2</sub> = −6.0 − (−1.5) = −4.5 m/s²。</p>
+
+            <p><strong>（2）滑出时间 t</strong></p>
+            <p>相对位移达到板长 L：</p>
+            <p style="text-align: center;">L = v<sub>rel0</sub>·t + (1/2)·a<sub>rel</sub>·t²</p>
+            <p style="text-align: center;">1 = 4.0 t − 0.5 × 4.5 × t² ⟹ 2.25 t² − 4 t + 1 = 0</p>
+            <p style="text-align: center;">t = [4 ± √(16 − 9)] / (2×2.25) = [4 ± √7] / 4.5</p>
+            <p>两个根：t₁ ≈ 0.301 s，t₂ ≈ 1.477 s。取物理上先发生的根：<strong>t ≈ 0.301 s。</strong></p>
+
+            <p><strong>（3）滑出时物块速度（向左为正）</strong></p>
+            <p style="text-align: center;">v<sub>1</sub> = v<sub>0</sub> + a<sub>1</sub>·t = 4.0 − 6.0 × 0.301 ≈ 2.19 m/s</p>
+            <p><strong>▸ 物块滑出时速度大小约 2.19 m/s，方向水平向左。</strong>（木板此时速度 v<sub>2</sub> = 0 − 1.5×0.301 ≈ −0.451 m/s，即向右约 0.451 m/s。）</p>
+
+            <p><strong>（4）平抛水平位移</strong></p>
+            <p>滑出后库仑力消失，物块只受重力，做平抛运动。下落高度即板厚 d=0.05 m：</p>
+            <p style="text-align: center;">d = (1/2)·g·t<sub>flight</sub>² ⟹ t<sub>flight</sub> = √(2d/g) = √(2×0.05/10) = 0.10 s</p>
+            <p style="text-align: center;">x = v<sub>1</sub> · t<sub>flight</sub> = 2.19 × 0.10 ≈ 0.219 m</p>
+            <p><strong>▸ 平抛水平位移约 0.219 m（方向向左）。</strong></p>
+
+            <p><strong>（5）木板滑出后减速到静止的位移</strong></p>
+            <p>物块离开后，木板对地面压力变为 Mg，地面摩擦 f<sub>1</sub>' = μ<sub>1</sub>·M·g：</p>
+            <p style="text-align: center;">f<sub>1</sub>' = 0.20 × 0.8 × 10 = 1.6 N ⟹ a' = f<sub>1</sub>'/M = 2.0 m/s²</p>
+            <p>木板滑出瞬间速度大小 |v<sub>2</sub>| ≈ 0.451 m/s，匀减速到 0：</p>
+            <p style="text-align: center;">s = |v<sub>2</sub>|² / (2a') = 0.451² / (2×2.0) ≈ 0.051 m</p>
+            <p><strong>▸ 木板从滑出到停下的位移约 0.051 m。</strong></p>
+
+            <h3 style="font-family: Georgia, serif;">B 套：按真实物理规律的判定</h3>
+            <p>由第三节，地面最大静摩擦 2.4 N &gt; 物块给板的摩擦力 1.2 N，故：</p>
+            <ul>
+                <li><strong>木板始终静止：</strong>a<sub>2</sub> = 0，不存在"滑出后木板继续减速滑行"的过程，第（5）问在真实情形下不成立（位移为 0，木板未动）。</li>
+                <li><strong>物块在板上：</strong>a<sub>1</sub> = 6.0 m/s² 向右，向左做匀减速。物块向左速度减到 0 之前能滑行的最大距离：x<sub>max</sub> = v<sub>0</sub>²/(2a<sub>1</sub>) = 4.0²/(2×6.0) ≈ 1.33 m &gt; L = 1.0 m。也就是说物块在向左减速到零之前，相对木板就已经滑出板的<strong>左端</strong>，而不是题目所说的"右端"。</li>
+                <li><strong>因此在真实物理下：</strong>物块会从左端滑离，滑离时速度仍向左、大小为 v = √(v<sub>0</sub>² − 2a<sub>1</sub>L) = √(16 − 12) = 2.0 m/s；但题目第（3）(4)问按"右端水平飞出做平抛"设定，与实际滑出方向、初始位置均不对应，平抛模型不能直接套用。</li>
+            </ul>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">五、这道题是否完美？—— 结论：不完美，存在多处硬伤</h2>
+            <p><strong>【总体结论】</strong>题目情境包装完整、设问链条清晰（加速度 → 时间 → 末速度 → 平抛 → 木板减速），作为一道多过程综合题的"框架"是可取的；但参数与物理过程存在实质性矛盾，<strong>不是一道严谨、完美的题</strong>。</p>
+            <p><strong>【主要瑕疵逐条】</strong></p>
+            <ol>
+                <li><strong>木板是否滑动：数值与文字矛盾（最核心硬伤）。</strong>物块给木板的摩擦力 f<sub>2</sub>=1.2 N，而地面最大静摩擦 f<sub>1max</sub>=2.4 N，1.2 &lt; 2.4，木板应当静止；题目却写明"木板也相对地面滑动"，并在第（5）问默认木板已有滑行速度。受力数据不足以支撑题设运动过程。</li>
+                <li><strong>摩擦力方向不自洽。</strong>即便强行假设木板滑动，物块对板的摩擦向左（1.2 N）、地面摩擦向右（2.4 N），合力向右，木板初速度为 0，理应向右加速；可一旦木板向右运动，地面摩擦方向又应改为向左。方向随运动状态反复翻转，列式无法闭环，这正是"驱动力小于最大静摩擦、板不能动"的表现。</li>
+                <li><strong>滑出端与初速度方向矛盾。</strong>物块 t=0 时初速度向左，按真实运动应从木板左端滑出；题目却要求从"右端"滑出，且未说明物块初始在板上的位置（左端/右端/中点），几何条件缺失。</li>
+                <li><strong>库仑力"恒定大小、恒定向右"的理想化问题。</strong>固定点电荷的库仑力大小 F=kQq/r²，随物块到点电荷距离变化而改变，方向也未必始终水平；题设"恒定水平向右吸引力"是人为假定，需在题干中明确说明"已等效为恒力"，否则与库仑定律不符。</li>
+                <li><strong>平抛条件交代不足。</strong>平抛要求飞出瞬间速度沿水平方向。题目未说明物块到达板边缘时竖直速度为零、边缘高度如何取；板厚 d=0.05 m 被当作平抛下落高度，但物块在板上表面运动，飞出时的抛出高度、是否会磕到板的竖直端面，均未交代。</li>
+                <li><strong>地面摩擦正压力容易被误算。</strong>物块在板上时，地面对木板的支持力是 (M+m)g；物块滑出后才变为 Mg。题目未在设问中点明这一区分，计算第（5）问时容易沿用 (M+m)g 导致木板减速加速度算错。</li>
+            </ol>
+
+            <p><strong>【若要把题目改严谨，建议】</strong></p>
+            <ul>
+                <li>调大物块对板的摩擦力（或减小 μ<sub>1</sub>、减小总质量），使 f<sub>2</sub> &gt; μ<sub>1</sub>(M+m)g，保证木板确实能在地面上滑动；</li>
+                <li>明确物块初始位置（如从木板左端以某速度冲出，或在板中点），并让初速度方向与"从哪端滑出"一致；</li>
+                <li>说明库仑力已按题意等效为水平恒力；</li>
+                <li>补充抛出瞬间速度水平、抛出高度等于板厚等平抛条件；</li>
+                <li>区分物块在板上 / 滑出后两个阶段地面摩擦的正压力。</li>
+            </ul>
+
+            <h2 style="font-family: Georgia, serif; border-bottom: 2px solid var(--border); padding-bottom: 5px;">附：A 套参考数值汇总</h2>
+            <ul style="font-size: 15px;">
+                <li>a<sub>1</sub> = 6.0 m/s²（向右）</li>
+                <li>a<sub>2</sub> ≈ 1.5 m/s²（按题设强行假设，非严格结论）</li>
+                <li>t ≈ 0.301 s</li>
+                <li>v<sub>1</sub> ≈ 2.19 m/s（向左）</li>
+                <li>平抛水平位移 ≈ 0.219 m</li>
+                <li>木板滑出后减速位移 ≈ 0.051 m</li>
+            </ul>
+
+        </main>
+
+        <footer class="footer">
+            © 2026 RUBBISH. 所有的废纸都会被认真对待。
+        </footer>
+    </div>
+</body>
+</html>

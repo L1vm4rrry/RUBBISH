@@ -98,6 +98,13 @@ const articlesData = [
         date: "2026-10-24",
         type: "精选"
     },
+    {
+        title: "粗糙水平地面上的长木板与带电小物块：一道物理题的详解与“硬伤”分析",
+        url: "articles/common/长木板与带电小物块物理题.html",
+        author: "摸头你就受着",
+        date: "2026-11-22",
+        type: "普通"
+    },
     //上面是普通
     //下面是精选
     {
